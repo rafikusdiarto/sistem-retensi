@@ -26,7 +26,7 @@
           <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
             <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
           </div>
-          <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Tables</span>
+          <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Data Petugas</span>
         </a>
       </li>
 
@@ -35,7 +35,7 @@
           <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
             <i class="relative top-0 text-sm leading-normal text-emerald-500 ni ni-credit-card"></i>
           </div>
-          <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Billing</span>
+          <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Data Rekam Medis</span>
         </a>
       </li>
 
@@ -44,7 +44,7 @@
           <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
             <i class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-app"></i>
           </div>
-          <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Virtual Reality</span>
+          <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Data Retensi</span>
         </a>
       </li>
 
@@ -53,7 +53,39 @@
           <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
             <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
           </div>
-          <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">RTL</span>
+          <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Laporan Retensi</span>
+        </a>
+      </li>
+      <li class="mt-0.5 w-full">
+        <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" >
+          <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+            <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
+          </div>
+          <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">SOP Retensi & Pemusnahan</span>
+        </a>
+      </li>
+      <li class="mt-0.5 w-full">
+        <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" >
+          <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+            <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
+          </div>
+          <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Statistik Retensi</span>
+        </a>
+      </li>
+      <li class="mt-0.5 w-full">
+        <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" >
+          <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+            <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
+          </div>
+          <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Rekam Medis Simpan</span>
+        </a>
+      </li>
+      <li class="mt-0.5 w-full">
+        <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" >
+          <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+            <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
+          </div>
+          <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Berita Acara</span>
         </a>
       </li>
 
@@ -61,7 +93,7 @@
         <h6 class="pl-6 ml-2 text-xs font-bold leading-tight uppercase opacity-60">Account pages</h6>
       </li>
 
-      <li class="mt-0.5 w-full">
+      {{-- <li class="mt-0.5 w-full">
         <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors">
           <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
             <i class="relative top-0 text-sm leading-normal text-slate-700 ni ni-single-02"></i>
@@ -77,7 +109,7 @@
           </div>
           <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Sign In</span>
         </a>
-      </li>
+      </li> --}}
 
       <li class="mt-0.5 w-full">
         <form action="{{route('logout')}}" method="POST">
