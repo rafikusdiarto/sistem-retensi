@@ -129,7 +129,7 @@
     <!-- load phantom colors for card after: -->
     <p class="invisible hidden text-gray-800 text-red-500 text-red-600 text-blue-500 bg-gray-500/30 bg-cyan-500/30 bg-emerald-500/30 bg-orange-500/30 bg-red-500/30 after:bg-gradient-to-tl after:from-zinc-800 after:to-zinc-700 after:from-blue-700 after:to-cyan-500 after:from-orange-500 after:to-yellow-500 after:from-green-600 after:to-lime-400 after:from-red-600 after:to-orange-600 after:from-slate-600 after:to-slate-300 text-emerald-500 text-cyan-500 text-slate-400"></p>
     <div class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border" sidenav-card>
-      <img class="w-1/2 mx-auto" src="{{ asset('assets/img/logo-dkt.jpg') }}" alt="DKT" />
+      <img class="w-1/2 mx-auto" src="{{ asset('assets/img/logo-dkt-1.jpg') }}" alt="DKT" />
       <div class="flex-auto w-full p-4 pt-0 text-center">
         <div class="transition-all duration-200 ease-nav-brand">
           <h6 class="mb-0 text-slate-700">Sistem Retensi</h6>
