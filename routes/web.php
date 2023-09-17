@@ -26,6 +26,8 @@ Route::get('/redirect', [RedirectController::class, 'index']);
 
 Route::get('/dashboard-petugas', [DashboardPetugasController::class, 'index'])->name('dashboardPetugas');
 Route::get('/datapetugas', [DataPetugasController::class, 'index'])->name('dataPetugas');
+Route::get('/tambahdatapetugas', [DataPetugasController::class, 'add'])->name('tambahDataPetugas');
+Route::post('/storedatapetugas', [DataPetugasController::class, 'store'])->name('storeDataPetugas');
 
 Route::get('/dashboard-kepala', [DashboardKepalaController::class, 'index'])->name('dashboardKepala');
 
