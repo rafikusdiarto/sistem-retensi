@@ -4,6 +4,13 @@
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             <div class="container relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
+                <div class="p-6 flex justify-between pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+                    <h6 class="text-slate-400 font-bold text-xl">Edit Data</h6>
+                    <a href="{{route('dataPetugas')}}"
+                    class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Kembali
+                    <i class="fas fa-arrow-left ms-2"></i>
+                    </a>
+                </div>
                 <form action="{{route('updateDataPetugas', $petugas->id)}}" method="POST" enctype="multipart/form-data" class="p-[30px]">
                     @csrf
                     @method('PUT')
@@ -29,10 +36,8 @@
 
                     <div class="mb-4">
                         <label for="jabatan" class="block mb-2 text-sm font-medium text-slate text-slate">Jabatan</label>
-                        <select id="jabatan" name="jabatan" class="bg-gray-50 uppercase border border-gray-300 text-slate text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                            <option value="petugas">Petugas</option>
-                            <option value="kepala">Kepala</option>
-                        </select>
+                        <input type="text"
+                        class="bg-gray-50 uppercase border border-gray-300 text-slate text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{$petugas->getRoleNames()->first()}}" readonly>
                     </div>
 
                     <div>
