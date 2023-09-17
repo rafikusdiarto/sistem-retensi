@@ -31,8 +31,10 @@
     <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
       <!-- Navbar -->
       @include('layouts.navigation')
-      @yield('content')
-      <div class="h-screen"></div>
+      <div class="w-full px-6 py-6 mx-auto">
+          @yield('content')
+          @include('components.footer')
+      </div>
     </main>
   </body>
   <!-- plugin for charts  -->

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\Petugas\DataPetugasController;
 use App\Http\Controllers\Kepala\DashboardKepalaController;
 use App\Http\Controllers\Petugas\DashboardPetugasController;
 
@@ -24,6 +25,8 @@ Route::get('/', function () {
 Route::get('/redirect', [RedirectController::class, 'index']);
 
 Route::get('/dashboard-petugas', [DashboardPetugasController::class, 'index'])->name('dashboardPetugas');
+Route::get('/datapetugas', [DataPetugasController::class, 'index'])->name('dataPetugas');
+
 Route::get('/dashboard-kepala', [DashboardKepalaController::class, 'index'])->name('dashboardKepala');
 
 // Route::get('/dashboard', function () {
