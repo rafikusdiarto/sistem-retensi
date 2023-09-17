@@ -55,9 +55,9 @@
                                         <td
                                             class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->name}}
                                         </td>
-                                        {{-- <td
-                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->role->name}}
-                                        </td> --}}
+                                        <td
+                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->name}}
+                                        </td>
                                         <td
                                             class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->email}}
                                         </td>
@@ -66,21 +66,25 @@
                                         </td>
                                         <td
                                             class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <button type="button"
+                                            <a href="{{route('editDataPetugas', $item->id)}}"
                                             class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
                                             <i class="fas fa-pen ms-2"></i>
-                                        </button>
+                                        </a>
 
                                         </td>
                                         <td
                                             class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <button type="button"
-                                            class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Hapus
-                                            <i class="fas fa-trash ms-2"></i>
-                                        </button>
+                                            <form action="{{route('deleteDataPetugas', $item->id)}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Hapus
+                                                <i class="fas fa-trash ms-2"></i>
+                                            </button>
+                                            
+                                            </form>
                                         </td>
                                     </tr>
-
                                 @endforeach
                             </tbody>
                         </table>

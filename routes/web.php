@@ -28,6 +28,9 @@ Route::get('/dashboard-petugas', [DashboardPetugasController::class, 'index'])->
 Route::get('/datapetugas', [DataPetugasController::class, 'index'])->name('dataPetugas');
 Route::get('/tambahdatapetugas', [DataPetugasController::class, 'add'])->name('tambahDataPetugas');
 Route::post('/storedatapetugas', [DataPetugasController::class, 'store'])->name('storeDataPetugas');
+Route::get('/editdatapetugas/{id}', [DataPetugasController::class, 'edit'])->name('editDataPetugas');
+Route::put('/updatedatapetugas/{id}', [DataPetugasController::class, 'update'])->name('updateDataPetugas');
+Route::delete('/deletedatapetugas/{id}', [DataPetugasController::class, 'delete'])->name('deleteDataPetugas');
 
 Route::get('/dashboard-kepala', [DashboardKepalaController::class, 'index'])->name('dashboardKepala');
 

@@ -16,8 +16,7 @@ class DataPetugasController extends Controller
     public function index(){
         try {
             $petugas = User::all();
-            return view('petugas.data-petugas.list',  [
-                'petugas' =>$petugas]);
+            return view('petugas.data-petugas.list', ['petugas' => $petugas]);
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){
@@ -54,6 +53,43 @@ class DataPetugasController extends Controller
         ]);
             $user->assignRole($request->jabatan);
             return redirect()->route('dataPetugas')->with('success', 'data berhasil ditambahkan');
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
+    public function edit(Request $request, $id){
+        try {
+            $user = User::find($id);
+            return view('petugas.data-petugas.editdata', ['petugas' => $user]);
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
+    public function update(Request $request, $id){
+        try {
+            User::find($id)->update([
+                'name' => $request->nama,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+             ]);
+             return redirect()->route('dataPetugas')->with('success', 'data berhasil diubah');
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
+    public function delete($id){
+        try {
+            User::find($id)->delete();
+            return redirect()->route('dataPetugas')->with('success', 'data berhasil dihapus');
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){
