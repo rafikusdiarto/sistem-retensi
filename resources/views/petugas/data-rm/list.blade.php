@@ -27,16 +27,22 @@
                                         No</th>
                                     <th
                                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        Nama Petugas</th>
+                                        NIK</th>
                                     <th
                                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        Jabatan</th>
+                                        No RM</th>
                                     <th
                                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        Email</th>
+                                        Nama</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                        Jenis Kelamin</th>
                                     <th
                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        Password</th>
+                                        MRS</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                        KRS</th>
                                     <th
                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
                                         Edit</th>
@@ -47,24 +53,31 @@
                             </thead>
                             <tbody>
                                 <?php $no=1; ?>
-                                {{-- @foreach ($petugas as $item) --}}
+                                {{-- @foreach ($pasien as $item)
                                     <tr>
                                         <td
-                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$no++}}
                                         </td>
                                         <td
-                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->no_rm}}
                                         </td>
                                         <td
-                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400 uppercase">
+                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->nik}}
                                         </td>
                                         <td
-                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->nama}}
                                         </td>
                                         <td
-                                            class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400 hidetext" style=" white-space: nowrap;
-                                            overflow: hidden;
-                                            max-width: 30px">
+                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->jenis_kelamin}}
+                                        </td>
+                                        <td
+                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->mrs}}
+                                        </td>
+                                        <td
+                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->krs}}
+                                        </td>
+                                        <td
+                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->pelayanan}}
                                         </td>
                                         <td
                                             class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
@@ -82,11 +95,10 @@
                                                 class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Hapus
                                                 <i class="fas fa-trash ms-2"></i>
                                             </button>
-
                                             </form>
                                         </td>
                                     </tr>
-                                {{-- @endforeach --}}
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>
@@ -98,6 +110,8 @@
 @endsection
 @section('extraJS')
 <script src="{{asset('DataTables/datatables.min.js')}}"></script>
-<script>let table = new DataTable('#myTable');</script>
+<script>
+var table =  $('#myTable').DataTable()
+</script>
 
 @endsection
