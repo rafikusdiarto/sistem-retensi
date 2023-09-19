@@ -39,6 +39,106 @@ class DataRekamMedisController extends Controller
         }
     }
 
+    public function store(Request $request){
+        // dd($request);
+        $request->validate([
+            'nama' => 'required',
+            'no_rm' => 'required',
+            'nik' => 'required|max:16',
+            'jenis_kelamin' => 'required',
+            'jenis_pelayanan' => 'required',
+            'dokter' => 'required',
+            'mrs' => 'required',
+            'krs' => 'required',
+            'alamat' => 'required'
+        ],
+        [
+            'required' => 'kolom wajib diisi',
+            'nik.max' => 'attribute harus 16 digit',
+            'nik.min' => 'attribute harus 16 digit'
+        ]
+        );
+        try {
+        $pasien = Pasien::insert([
+            'no_rm' => $request->no_rm,
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'jenis_pelayanan' => $request->jenis_pelayanan,
+            'dokter' => $request->dokter,
+            'mrs' => $request->mrs,
+            'krs' => $request->krs,
+            'alamat' => $request->alamat,
+            ]);
+        return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil ditambahkan');
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
+    public function edit($id){
+        try {
+            $data_pasien = Pasien::find($id);
+            return view('petugas.data-rm.editdata', ['data_pasien' => $data_pasien]);
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'nama' => 'required',
+            'no_rm' => 'required',
+            'nik' => 'required|max:16|min:16',
+            'jenis_kelamin' => 'required',
+            'jenis_pelayanan' => 'required',
+            'dokter' => 'required',
+            'mrs' => 'required',
+            'krs' => 'required',
+            'alamat' => 'required'
+        ],
+        [
+            'required' => 'kolom wajib diisi',
+            'nik.max' => 'attribute harus 16 digit',
+            'nik.min' => 'attribute harus 16 digit'
+        ]
+        );
+        try {
+            Pasien::find($id)->update([
+                'no_rm' => $request->no_rm,
+                'nik' => $request->nik,
+                'nama' => $request->nama,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'jenis_pelayanan' => $request->jenis_pelayanan,
+                'dokter' => $request->dokter,
+                'mrs' => $request->mrs,
+                'krs' => $request->krs,
+                'alamat' => $request->alamat,
+                ]);
+            return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil diubah');
+
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
+    public function delete($id){
+        try {
+            Pasien::find($id)->delete();
+            return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil dihapus');
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
     public function importFile(Request $request){
         $this->validate($request, [
 			'file' => 'required|mimes:csv,xls,xlsx'

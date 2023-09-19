@@ -17,8 +17,11 @@ return new class extends Migration
             $table->string('no_rm')->nullable();
             $table->string('nama')->nullable();
             $table->string('jenis_kelamin')->nullable();
-            $table->string('mrs')->nullable();
-            $table->string('krs')->nullable();
+            $table->string('jenis_pelayanan')->nullable();
+            $table->string('dokter')->nullable();
+            $table->string('alamat')->nullable();
+            $table->date('mrs')->nullable();
+            $table->date('krs')->nullable();
             $table->timestamps();
         });
     }

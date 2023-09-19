@@ -38,6 +38,12 @@
                                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
                                         Jenis Kelamin</th>
                                     <th
+                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                        Jenis Pelayanan</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                        Dokter</th>
+                                    <th
                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
                                         MRS</th>
                                     <th
@@ -53,7 +59,7 @@
                             </thead>
                             <tbody>
                                 <?php $no=1; ?>
-                                {{-- @foreach ($pasien as $item)
+                                @foreach ($pasien as $item)
                                     <tr>
                                         <td
                                             class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$no++}}
@@ -71,24 +77,27 @@
                                             class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->jenis_kelamin}}
                                         </td>
                                         <td
+                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->jenis_pelayanan}}
+                                        </td>
+                                        <td
+                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->dokter}}
+                                        </td>
+                                        <td
                                             class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->mrs}}
                                         </td>
                                         <td
                                             class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->krs}}
                                         </td>
                                         <td
-                                            class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">{{$item->pelayanan}}
-                                        </td>
-                                        <td
                                             class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <a href=""
+                                            <a href="{{route('editDataRekamMedis', $item->id)}}"
                                             class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
                                             <i class="fas fa-pen ms-2"></i>
                                         </a>
                                         </td>
                                         <td
                                             class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <form action="" method="POST">
+                                            <form action="{{route('deleteDataRekamMedis', $item->id)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
@@ -98,7 +107,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

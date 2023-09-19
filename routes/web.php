@@ -34,6 +34,10 @@ Route::put('/updatedatapetugas/{id}', [DataPetugasController::class, 'update'])-
 Route::delete('/deletedatapetugas/{id}', [DataPetugasController::class, 'delete'])->name('deleteDataPetugas');
 Route::get('/datarekammedis', [DataRekamMedisController::class, 'index'])->name('dataRekamMedis');
 Route::get('/tambahdatarekammedis', [DataRekamMedisController::class, 'add'])->name('tambahDataRekamMedis');
+Route::post('/storedatarekammedis', [DataRekamMedisController::class, 'store'])->name('storeDataRekamMedis');
+Route::get('/editdatarekammedis/{id}', [DataRekamMedisController::class, 'edit'])->name('editDataRekamMedis');
+Route::put('/updatedatarekammedis/{id}', [DataRekamMedisController::class, 'update'])->name('updateDataRekamMedis');
+Route::delete('/deletedatarekammedis/{id}', [DataRekamMedisController::class, 'delete'])->name('deleteDataRekamMedis');
 Route::post('/uploadfile', [DataRekamMedisController::class, 'importFile'])->name('importFile');
 
 

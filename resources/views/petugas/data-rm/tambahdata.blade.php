@@ -54,13 +54,14 @@
                     </form>
                 </div>
                 <div id="inputData" style="display: none">
-                    <form action="{{ url('') }}" method="POST" enctype="multipart/form-data"
+                    <form action="{{ route('storeDataRekamMedis') }}" method="POST" enctype="multipart/form-data"
                         class="p-[30px]">
+                        @method('POST')
                         @csrf
                         <div class="flex grid grid-cols-2 gap-4">
                             <div class="">
                                 <div class="mb-4">
-                                    <label for="email" class="block mb-2 text-sm font-medium text-slate text-slate">No Rekam Medis</label>
+                                    <label for="no_rm" class="block mb-2 text-sm font-medium text-slate text-slate">No Rekam Medis</label>
                                     <input type="text" name="no_rm" id="no_rm"
                                         class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     @error('no_rm')
@@ -70,7 +71,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label for="email" class="block mb-2 text-sm font-medium text-slate text-slate">NIK Pasien</label>
+                                    <label for="nik" class="block mb-2 text-sm font-medium text-slate text-slate">NIK Pasien</label>
                                     <input type="text" name="nik" id="nik"
                                         class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                     @error('nik')
@@ -80,9 +81,14 @@
                                     @enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label for="email" class="block mb-2 text-sm font-medium text-slate text-slate">Nama Pasien</label>
+                                    <label for="nama" class="block mb-2 text-sm font-medium text-slate text-slate">Nama Pasien</label>
                                     <input type="text" name="nama" id="nama"
                                         class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        @error('nama')
+                                        <span class="pl-1 text-xs text-red-600 text-bold">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
                                 </div>
                                 <div class="mb-4">
                                     <label for="jenis_kelamin"
@@ -92,6 +98,11 @@
                                         <option value="laki-laki">Laki-laki</option>
                                         <option value="perempuan">Perempuan</option>
                                     </select>
+                                    @error('jenis_kelamin')
+                                        <span class="pl-1 text-xs text-red-600 text-bold">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="mb-4">
                                     <label for="jenis_pelayanan"
@@ -101,6 +112,11 @@
                                         <option value="rawat_jalan">Rawat Jalan</option>
                                         <option value="rawat_inap">Rawat Inap</option>
                                     </select>
+                                    @error('jenis_pelayanan')
+                                        <span class="pl-1 text-xs text-red-600 text-bold">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="">
@@ -128,12 +144,22 @@
                                     <label for="krs" class="block mb-2 text-sm font-medium text-slate text-slate">KRS</label>
                                     <input type="date" name="krs" id="krs"
                                         class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                        @error('krs')
+                                        <span class="pl-1 text-xs text-red-600 text-bold">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="mb-4">
                                     <label for="alamat"
                                         class="block mb-2 text-sm font-medium text-slate text-slate">Alamat</label>
                                     <input type="text" name="alamat" id="alamat"
                                         class=" border border-gray-300 text-slate text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        @error('alamat')
+                                        <span class="pl-1 text-xs text-red-600 text-bold">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

@@ -18,10 +18,10 @@ class PasienImport implements ToModel, WithHeadingRow, WithCalculatedFormulas
     {
         $pasien = Pasien::create([
 
+            'nik' => $row['nik'],
             'no_rm' => $row['no_rm'],
-            'nama' => $row['nik'],
             'nama' => $row['nama'],
-            'nama' => $row['jenis_kelamin'],
+            'jenis_kelamin' => $row['jenis_kelamin'],
 
             // 'nama' => $row['nama'],
             // 'no_rm' => $row['no_rm'],
