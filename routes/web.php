@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\Petugas\DataPetugasController;
 use App\Http\Controllers\Kepala\DashboardKepalaController;
+use App\Http\Controllers\Petugas\DataRekamMedisController;
 use App\Http\Controllers\Petugas\DashboardPetugasController;
 
 /*
@@ -31,6 +32,9 @@ Route::post('/storedatapetugas', [DataPetugasController::class, 'store'])->name(
 Route::get('/editdatapetugas/{id}', [DataPetugasController::class, 'edit'])->name('editDataPetugas');
 Route::put('/updatedatapetugas/{id}', [DataPetugasController::class, 'update'])->name('updateDataPetugas');
 Route::delete('/deletedatapetugas/{id}', [DataPetugasController::class, 'delete'])->name('deleteDataPetugas');
+Route::get('/datarekammedis', [DataRekamMedisController::class, 'index'])->name('dataRekamMedis');
+Route::get('/tambahdatarekammedis', [DataRekamMedisController::class, 'add'])->name('tambahDataRekamMedis');
+
 
 Route::get('/dashboard-kepala', [DashboardKepalaController::class, 'index'])->name('dashboardKepala');
 

@@ -107,7 +107,7 @@
 
                 <li class="mt-0.5 w-full">
                     <a href="{{route('dataPetugas')}}"
-                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors {{ (request()->segment(1) == 'datapetugas') || (request()->segment(1) == 'tambahdatapetugas') ? 'bg-menu text-white' : '' }}">
+                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors {{ (request()->segment(1) == 'datapetugas') || (request()->segment(1) == 'tambahdatapetugas') || (request()->segment(1) == 'editdatapetugas')? 'bg-menu text-white' : '' }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                             <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
@@ -117,8 +117,8 @@
                 </li>
 
                 <li class="mt-0.5 w-full">
-                    <a
-                        class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors">
+                    <a href="{{route('dataRekamMedis')}}"
+                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors {{ (request()->segment(1) == 'datarekammedis') || (request()->segment(1) == 'tambahdatapetugas') || (request()->segment(1) == 'editdatapetugas')? 'bg-menu text-white' : '' }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
                             <i class="relative top-0 text-sm leading-normal text-emerald-500 ni ni-credit-card"></i>
