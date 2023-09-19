@@ -96,3 +96,8 @@
     </div>
 
 @endsection
+@section('extraJS')
+<script src="{{asset('DataTables/datatables.min.js')}}"></script>
+<script>let table = new DataTable('#myTable');</script>
+
+@endsection
