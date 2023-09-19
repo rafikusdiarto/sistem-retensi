@@ -25,7 +25,7 @@
 </head>
 
 <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
-    <div class="absolute w-full header-green min-h-75"></div>
+    <div class="absolute w-full header-green min-h-75 top-0"></div>
     <!-- sidenav  -->
     @include('components.sidebar')
 
