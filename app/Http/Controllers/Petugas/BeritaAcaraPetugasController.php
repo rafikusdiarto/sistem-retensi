@@ -44,24 +44,28 @@ class BeritaAcaraPetugasController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'jabatan' => 'required',
+            'cara_pemusnahan' => 'required',
+            'tanggal_pemusnahan' => 'required',
+            'waktu_pemusnahan' => 'required',
+            'lokasi_pemusnahan' => 'required',
+            'ketua_rekam_medis' => 'required',
+            'lampiran' => 'required|array',
+            'lampiran.*' => 'mimes:pdf',
+        ], [
+            'required' => ':attribute wajib diisi',
+            'mimes' => 'lampiran harus berupa file .pdf',
+        ]);
         try {
-            $request->validate([
-                'name' => 'required',
-                'jabatan' => 'required',
-                'cara_pemusnahan' => 'required',
-                'tanggal_pemusnahan' => 'required',
-                'waktu_pemusnahan' => 'required',
-                'lokasi_pemusnahan' => 'required',
-                'ketua_rm' => 'required',
-                'lampiran' => 'required',
-            ]);
             $beritaAcara = BeritaAcara::create([
                 'user_id' => \Auth::user()->id,
                 'cara_pemusnahan' => $request->cara_pemusnahan,
                 'tanggal_pemusnahan' => $request->tanggal_pemusnahan,
                 'waktu_pemusnahan' => $request->waktu_pemusnahan,
                 'lokasi_pemusnahan' => $request->lokasi_pemusnahan,
-                'ketua_rm' => $request->ketua_rm,
+                'ketua_rm' => $request->ketua_rekam_medis,
             ]);
 
 
@@ -99,17 +103,20 @@ class BeritaAcaraPetugasController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required',
+            'jabatan' => 'required',
+            'cara_pemusnahan' => 'required',
+            'tanggal_pemusnahan' => 'required',
+            'waktu_pemusnahan' => 'required',
+            'lokasi_pemusnahan' => 'required',
+            'ketua_rm' => 'required',
+            'lampiran' => 'required',
+        ], [
+            'required' => ':attribute wajib diisi',
+            'mimes' => 'lampiran harus berupa file .pdf',
+        ]);
         try {
-            $request->validate([
-                'name' => 'required',
-                'jabatan' => 'required',
-                'cara_pemusnahan' => 'required',
-                'tanggal_pemusnahan' => 'required',
-                'waktu_pemusnahan' => 'required',
-                'lokasi_pemusnahan' => 'required',
-                'ketua_rm' => 'required',
-                'lampiran' => 'required',
-            ]);
             $beritaAcara = BeritaAcara::find($id)->update([
                 'user_id' => \Auth::user()->id,
                 'cara_pemusnahan' => $request->cara_pemusnahan,
@@ -134,10 +141,8 @@ class BeritaAcaraPetugasController extends Controller
 
             return redirect()->route('beritaAcara')->with('success', 'Data berhasil diubah');
         } catch (\Throwable $e) {
-            dd($e);
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
-            dd($e);
             return redirect()->back()->withError($e->getMessage());
         }
     }
