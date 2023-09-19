@@ -7,6 +7,7 @@ use App\Http\Controllers\Petugas\DataPetugasController;
 use App\Http\Controllers\Kepala\DashboardKepalaController;
 use App\Http\Controllers\Petugas\DataRekamMedisController;
 use App\Http\Controllers\Petugas\DashboardPetugasController;
+use App\Http\Controllers\Petugas\BeritaAcaraPetugasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,4 @@ Route::get('/dashboard-kepala', [DashboardKepalaController::class, 'index'])->na
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/berita-acara.php';

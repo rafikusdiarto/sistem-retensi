@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,11 +18,10 @@ return new class extends Migration
             $table->string('waktu_pemusnahan');
             $table->string('lokasi_pemusnahan');
             $table->string('ketua_rm');
-            $table->string('lampiran');
             $table->timestamps();
 
             $table->foreign('user_id')
-              ->references('id')->on('users')->onDelete('cascade');
+                ->references('id')->on('users')->onDelete('cascade');
         });
     }
 
