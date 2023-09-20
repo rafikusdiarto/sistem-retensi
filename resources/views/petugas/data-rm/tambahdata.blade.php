@@ -95,8 +95,8 @@
                                         class="block mb-2 text-sm font-medium text-slate text-slate">Jenis Kelamin</label>
                                     <select id="jenis_kelamin" name="jenis_kelamin"
                                         class="bg-gray-50 border border-gray-300 text-slate text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                        <option value="laki-laki">Laki-laki</option>
-                                        <option value="perempuan">Perempuan</option>
+                                        <option value="L">Laki-laki</option>
+                                        <option value="P">Perempuan</option>
                                     </select>
                                     @error('jenis_kelamin')
                                         <span class="pl-1 text-xs text-red-600 text-bold">
@@ -109,8 +109,8 @@
                                         class="block mb-2 text-sm font-medium text-slate text-slate">Jenis Pelayanan</label>
                                     <select id="jenis_pelayanan" name="jenis_pelayanan"
                                         class="bg-gray-50 border border-gray-300 text-slate text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                        <option value="rawat_jalan">Rawat Jalan</option>
-                                        <option value="rawat_inap">Rawat Inap</option>
+                                        <option value="RJ">Rawat Jalan</option>
+                                        <option value="RI">Rawat Inap</option>
                                     </select>
                                     @error('jenis_pelayanan')
                                         <span class="pl-1 text-xs text-red-600 text-bold">
