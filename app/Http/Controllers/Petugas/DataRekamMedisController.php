@@ -184,4 +184,18 @@ class DataRekamMedisController extends Controller
         //     return redirect()->back()->withError($e->getMessage());
         // }
     }
+
+    public function changeStatus(Request $request){
+        try {
+            $id_pasien = $request->input('checked');
+            Pasien::whereIn('id', $id_pasien)
+                ->update(['status' => 'inactive']);
+            return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil diretensi');
+
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
 }

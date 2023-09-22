@@ -39,6 +39,7 @@ Route::get('/datarekammedis/tambahdatarekammedis', [DataRekamMedisController::cl
 Route::post('/storedatarekammedis', [DataRekamMedisController::class, 'store'])->name('storeDataRekamMedis');
 Route::get('/datarekammedis/editdatarekammedis/{id}', [DataRekamMedisController::class, 'edit'])->name('editDataRekamMedis');
 Route::put('/updatedatarekammedis/{id}', [DataRekamMedisController::class, 'update'])->name('updateDataRekamMedis');
+Route::post('/retensidatarekammedis', [DataRekamMedisController::class, 'changeStatus'])->name('retensi');
 Route::delete('/deletedatarekammedis/{id}', [DataRekamMedisController::class, 'delete'])->name('deleteDataRekamMedis');
 Route::get('/searchdatarekammedis', [DataRekamMedisController::class, 'search'])->name('searchDataRekamMedis');
 Route::get('/dataretensi', [DataRetensiController::class, 'index'])->name('dataRetensi');

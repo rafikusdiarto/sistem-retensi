@@ -102,110 +102,110 @@
 
                             </div>
                         </div>
-                        <table class="items-center w-[96.5%] my-5 mb-0 align-top border-collapse" datatable id="myTable">
-                            <thead class="align-bottom">
-                                <tr class="header-green rounded-full text-white">
-                                    <th
-                                        class="text-left px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        No</th>
-                                    <th
-                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        No RM</th>
-                                    <th
-                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        NIK</th>
-                                    <th
-                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        Nama</th>
-                                    <th
-                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        Jenis Kelamin</th>
-                                    <th
-                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        MRS</th>
-                                    <th
-                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        KRS</th>
-                                    <th
-                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        Jenis Pelayanan</th>
-                                    <th
-                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap">
-                                        Edit</th>
-                                    <th
-                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        Hapus</th>
-                                    <th
-                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        Pilih</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <?php $no = 1; ?>
-                                    @foreach ($pasien as $item)
-                                        <tr class="bg-[#FFC7B6]">
-                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                {{ $no++ }}
-                                            </td>
-                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                {{ $item->no_rm }}
-                                            </td>
-                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                {{ $item->nik }}
-                                            </td>
-                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                {{ $item->nama }}
-                                            </td>
-                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                {{ $item->jenis_kelamin }}
-                                            </td>
-                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                {{ $item->mrs }}
-                                            </td>
-                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                {{ $item->krs }}
-                                            </td>
-                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                {{ $item->jenis_pelayanan }}
-                                            </td>
-                                            <td
-                                                class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                <a href="{{ route('editDataRekamMedis', $item->id) }}"
-                                                    class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
-                                                    <i class="fas fa-pen ms-2"></i>
-                                                </a>
-                                            </td>
-                                            <td
-                                                class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                <form action="{{ route('deleteDataRekamMedis', $item->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Hapus
-                                                        <i class="fas fa-trash ms-2"></i>
-                                                    </button>
-                                                </form>
-                                            </td>
-                                            <td
-                                                class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                <label>
-                                                    <input id="checkbox-1"
-                                                        class="w-5 h-5 ease text-base -ml-7 rounded-1.4  checked:bg-gradient-to-tl checked:from-blue-500 checked:to-violet-500 after:text-xxs after:font-awesome after:duration-150 after:ease-in-out duration-100 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-500 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100"
-                                                        type="checkbox" />
-                                                </label>
-                                                </form>
-                                            </td>
-                                        </tr>
-
-                                    @endforeach
-                            </tbody>
-                        </table>
-                        <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid text-right rounded-t-2xl border-b-transparent">
-                            <a href=""
-                                class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-red-400 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Arsipkan
-                                Pilihan
-                            </a>
-                        </div>
+                        <form action="{{route('retensi')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <table class="items-center w-[96.5%] my-5 mb-0 align-top border-collapse" datatable id="myTable">
+                                <thead class="align-bottom">
+                                    <tr class="header-green rounded-full text-white">
+                                        <th
+                                            class="text-left px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            No</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            No RM</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            NIK</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            Nama</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            Jenis Kelamin</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            MRS</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            KRS</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            Jenis Pelayanan</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap">
+                                            Edit</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            Hapus</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            Pilih</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <?php $no = 1; ?>
+                                        @foreach ($pasien as $item)
+                                            <tr class="{{ ($item->status == 'inactive') ? 'bg-[#FFC7B6] hidden' : '' }}">
+                                                <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                    {{ $no++ }}
+                                                </td>
+                                                <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                    {{ $item->no_rm }}
+                                                </td>
+                                                <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                    {{ $item->nik }}
+                                                </td>
+                                                <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                    {{ $item->nama }}
+                                                </td>
+                                                <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                    {{ $item->jenis_kelamin }}
+                                                </td>
+                                                <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                    {{ $item->mrs }}
+                                                </td>
+                                                <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                    {{ $item->krs }}
+                                                </td>
+                                                <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                    {{ $item->jenis_pelayanan }}
+                                                </td>
+                                                <td
+                                                    class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                    <a href="{{ route('editDataRekamMedis', $item->id) }}"
+                                                        class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
+                                                        <i class="fas fa-pen ms-2"></i>
+                                                    </a>
+                                                </td>
+                                                <td
+                                                    class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                    <form action="{{ route('deleteDataRekamMedis', $item->id) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Hapus
+                                                            <i class="fas fa-trash ms-2"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                                <td
+                                                    class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                    <label>
+                                                        <input id="checkbox-1" name="checked[]" value="{{ $item->id }}"
+                                                            class="w-5 h-5 ease text-base -ml-7 rounded-1.4  checked:bg-gradient-to-tl checked:from-blue-500 checked:to-violet-500 after:text-xxs after:font-awesome after:duration-150 after:ease-in-out duration-100 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-500 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100"
+                                                            type="checkbox" />
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                </tbody>
+                            </table>
+                            <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid text-right rounded-t-2xl border-b-transparent">
+                                <button type="submit"
+                                    class="btn-shadow font-bold uppercase leading-normal text-xs ease-in bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:-translate-y-px hover:shadow-md">Cetak
+                                    Pilihan
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
