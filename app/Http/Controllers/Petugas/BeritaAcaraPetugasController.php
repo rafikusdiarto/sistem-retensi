@@ -73,6 +73,7 @@ class BeritaAcaraPetugasController extends Controller
                 $files = $request->file('lampiran');
                 foreach ($files as $file) {
                     $filename = $file->getClientOriginalName();
+                    $file->move('berita_acara', $filename);
                     BeritaAcaraLampirans::create([
                         'berita_acara_id' => $beritaAcara->id,
                         'filename' => $filename
