@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\Petugas\DataRetensiController;
 use App\Http\Controllers\Petugas\DataPetugasController;
 use App\Http\Controllers\Kepala\DashboardKepalaController;
 use App\Http\Controllers\Petugas\DataRekamMedisController;
@@ -40,6 +41,9 @@ Route::get('/editdatarekammedis/{id}', [DataRekamMedisController::class, 'edit']
 Route::put('/updatedatarekammedis/{id}', [DataRekamMedisController::class, 'update'])->name('updateDataRekamMedis');
 Route::delete('/deletedatarekammedis/{id}', [DataRekamMedisController::class, 'delete'])->name('deleteDataRekamMedis');
 Route::get('/searchdatarekammedis', [DataRekamMedisController::class, 'search'])->name('searchDataRekamMedis');
+Route::get('/dataretensi', [DataRetensiController::class, 'index'])->name('dataRetensi');
+Route::post('/dataretensi/print', [DataRetensiController::class, 'print'])->name('printDataRetensi');
+
 Route::post('/uploadfile', [DataRekamMedisController::class, 'importFile'])->name('importFile');
 
 
