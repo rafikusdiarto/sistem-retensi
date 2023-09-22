@@ -8,10 +8,10 @@
                     class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-emerald-500 to-teal-400 border-emerald-300">
                     {{ session('success') }}</div>
             @endif
-            @if (session('errors'))
+            @if (session('error'))
                 <div alert
                     class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-emerald-500 to-teal-400 border-emerald-300">
-                    `{{ session('errors') }}`</div>
+                    `{{ session('error') }}`</div>
             @endif
             <div
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
@@ -87,15 +87,17 @@
                                 </div>
 
 
-                                <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease xl:w-20"
-                                    id="myTable_filter">
+                                <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease xl:w-20">
                                     <span
                                         class="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
                                         <i class="fas fa-search" aria-hidden="true"></i>
                                     </span>
-                                    <input type="search"
-                                        class="pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
-                                        placeholder="Masukkan nomor RM" aria-controls="myTable" />
+                                    <div>
+                                        <input type="text" name="search" id="search"
+                                            class="pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
+                                            placeholder="Masukkan nomor RM" aria-controls="myTable" />
+
+                                    </div>
                                 </div>
 
                             </div>
@@ -139,116 +141,63 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no = 1; ?>
-                                @foreach ($pasien as $item)
-                                    <tr class="bg-[#FFC7B6]">
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $no++ }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->no_rm }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->nik }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->nama }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->jenis_kelamin }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->mrs }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->krs }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->jenis_pelayanan }}
-                                        </td>
-                                        <td
-                                            class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <a href="{{ route('editDataRekamMedis', $item->id) }}"
-                                                class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
-                                                <i class="fas fa-pen ms-2"></i>
-                                            </a>
-                                        </td>
-                                        <td
-                                            class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <form action="{{ route('deleteDataRekamMedis', $item->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Hapus
-                                                    <i class="fas fa-trash ms-2"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                        <td
-                                            class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <label>
-                                                <input id="checkbox-1"
-                                                    class="w-5 h-5 ease text-base -ml-7 rounded-1.4  checked:bg-gradient-to-tl checked:from-blue-500 checked:to-violet-500 after:text-xxs after:font-awesome after:duration-150 after:ease-in-out duration-100 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-500 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100"
-                                                    type="checkbox" />
-                                            </label>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    <?php $no = 1; ?>
+                                    @foreach ($pasien as $item)
+                                        <tr class="bg-[#FFC7B6]">
+                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                {{ $no++ }}
+                                            </td>
+                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                {{ $item->no_rm }}
+                                            </td>
+                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                {{ $item->nik }}
+                                            </td>
+                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                {{ $item->nama }}
+                                            </td>
+                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                {{ $item->jenis_kelamin }}
+                                            </td>
+                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                {{ $item->mrs }}
+                                            </td>
+                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                {{ $item->krs }}
+                                            </td>
+                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                {{ $item->jenis_pelayanan }}
+                                            </td>
+                                            <td
+                                                class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                <a href="{{ route('editDataRekamMedis', $item->id) }}"
+                                                    class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
+                                                    <i class="fas fa-pen ms-2"></i>
+                                                </a>
+                                            </td>
+                                            <td
+                                                class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                <form action="{{ route('deleteDataRekamMedis', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Hapus
+                                                        <i class="fas fa-trash ms-2"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td
+                                                class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                <label>
+                                                    <input id="checkbox-1"
+                                                        class="w-5 h-5 ease text-base -ml-7 rounded-1.4  checked:bg-gradient-to-tl checked:from-blue-500 checked:to-violet-500 after:text-xxs after:font-awesome after:duration-150 after:ease-in-out duration-100 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-500 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100"
+                                                        type="checkbox" />
+                                                </label>
+                                                </form>
+                                            </td>
+                                        </tr>
 
-                                    <tr class="">
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $no++ }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->no_rm }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->nik }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->nama }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->jenis_kelamin }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->mrs }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->krs }}
-                                        </td>
-                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            {{ $item->jenis_pelayanan }}
-                                        </td>
-                                        <td
-                                            class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <a href="{{ route('editDataRekamMedis', $item->id) }}"
-                                                class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
-                                                <i class="fas fa-pen ms-2"></i>
-                                            </a>
-                                        </td>
-                                        <td
-                                            class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <form action="{{ route('deleteDataRekamMedis', $item->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Hapus
-                                                    <i class="fas fa-trash ms-2"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                        <td
-                                            class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <label>
-                                                <input id="checkbox-1"
-                                                    class="w-5 h-5 ease text-base -ml-7 rounded-1.4  checked:bg-gradient-to-tl checked:from-blue-500 checked:to-violet-500 after:text-xxs after:font-awesome after:duration-150 after:ease-in-out duration-100 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-500 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100"
-                                                    type="checkbox" />
-                                            </label>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    @endforeach
                             </tbody>
                         </table>
                         <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid text-right rounded-t-2xl border-b-transparent">
@@ -268,4 +217,25 @@
     <script>
         var table = $('#myTable').DataTable()
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+    $('#search').on('keyup', function() {
+        var query = $(this).val();
+
+        $.ajax({
+            url: '/searchdatarekammedis', // Ganti dengan rute pencarian yang sesuai
+            type: 'GET',
+            data: { query: query },
+            success: function(data) {
+                $('tbody').html(data);
+                console.log(data);
+            }
+        });
+    });
+});
+    </script>
+
+
 @endsection

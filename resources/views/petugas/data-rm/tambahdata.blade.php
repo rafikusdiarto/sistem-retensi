@@ -3,6 +3,16 @@
 @section('content')
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
+            @if (session('success'))
+                <div alert
+                    class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-emerald-500 to-teal-400 border-emerald-300">
+                    {{ session('success') }}</div>
+            @endif
+            @if (session('error'))
+                <div alert
+                    class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-emerald-500 to-teal-400 border-emerald-300">
+                    {{ session('error') }}`</div>
+            @endif
             <div
                 class="container relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border h-[800px]">
                 <div class="p-6 flex justify-between pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
