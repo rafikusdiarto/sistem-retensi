@@ -20,7 +20,7 @@ class DataRekamMedisController extends Controller
 
     public function index(){
         try {
-            $data_pasien = Pasien::all();
+            $data_pasien = Pasien::where('status', 'active')->get();
             return view('petugas.data-rm.list', ['pasien' => $data_pasien]);
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());
@@ -69,6 +69,7 @@ class DataRekamMedisController extends Controller
             'mrs' => $request->mrs,
             'krs' => $request->krs,
             'alamat' => $request->alamat,
+            'status' => 'active',
             ]);
         return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil ditambahkan');
         } catch(\Throwable $e){
@@ -93,7 +94,7 @@ class DataRekamMedisController extends Controller
         $request->validate([
             'nama' => 'required',
             'no_rm' => 'required',
-            'nik' => 'required|max:16|min:16',
+            'nik' => 'required|max:16|min:16|unique:nik',
             'jenis_kelamin' => 'required',
             'jenis_pelayanan' => 'required',
             'dokter' => 'required',
