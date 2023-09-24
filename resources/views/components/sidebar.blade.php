@@ -107,7 +107,7 @@
 
                 <li class="mt-0.5 w-full">
                     <a href="{{route('dataPetugas')}}"
-                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors {{ (request()->segment(1) == 'datapetugas') || (request()->segment(1) == 'tambahdatapetugas') || (request()->segment(1) == 'editdatapetugas')? 'bg-menu text-white' : '' }}">
+                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors {{ (request()->segment(1) == 'datapetugas') ? 'bg-menu text-white' : '' }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                             <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
@@ -118,7 +118,7 @@
 
                 <li class="mt-0.5 w-full">
                     <a href="{{route('dataRekamMedis')}}"
-                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors {{ (request()->segment(1) == 'datarekammedis') || (request()->segment(1) == 'tambahdatapetugas') || (request()->segment(1) == 'editdatapetugas')? 'bg-menu text-white' : '' }}">
+                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors {{ (request()->segment(1) == 'datarekammedis') ? 'bg-menu text-white' : '' }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
                             <i class="relative top-0 text-sm leading-normal text-emerald-500 ni ni-credit-card"></i>
@@ -128,8 +128,8 @@
                 </li>
 
                 <li class="mt-0.5 w-full">
-                    <a
-                        class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors">
+                    <a href="{{route('dataRetensi')}}"
+                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors {{ (request()->segment(1) == 'dataretensi') ? 'bg-menu text-white' : '' }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                             <i class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-app"></i>
@@ -140,7 +140,7 @@
 
                 <li class="mt-0.5 w-full">
                     <a
-                        class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors">
+                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                             <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
@@ -150,17 +150,22 @@
                 </li>
                 <li class="mt-0.5 w-full">
                     <a
-                        class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors">
+                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                            <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
+                            <i class="relative top-0 text-sm leading-normal text-yellow-400 ni ni-badge"></i>
                         </div>
                         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">SOP Retensi & Pemusnahan</span>
                     </a>
                 </li>
                 <li class="mt-0.5 w-full">
+<<<<<<< HEAD
                     <a href="{{ route('statistikRetensi') }}"
                         class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors {{ (request()->segment(1) == 'statistik-retensi') ? 'bg-menu text-white' : '' }}">
+=======
+                    <a
+                        class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors">
+>>>>>>> bf0bef7e3666e3042d0ccdaaa284398067d83a4f
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                             <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
@@ -170,10 +175,10 @@
                 </li>
                 <li class="mt-0.5 w-full">
                     <a
-                        class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors">
+                        class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                            <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
+                            <i class="relative top-0 text-sm leading-normal text-purple-500 ni ni-archive-2"></i>
                         </div>
                         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Rekam Medis Simpan</span>
                     </a>

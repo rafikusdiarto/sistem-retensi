@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\Petugas\DataRetensiController;
 use App\Http\Controllers\Petugas\DataPetugasController;
 use App\Http\Controllers\Kepala\DashboardKepalaController;
 use App\Http\Controllers\Petugas\DataRekamMedisController;
@@ -27,27 +28,15 @@ Route::get('/', function () {
 Route::get('/redirect', [RedirectController::class, 'index']);
 
 Route::get('/dashboard-petugas', [DashboardPetugasController::class, 'index'])->name('dashboardPetugas');
-Route::get('/datapetugas', [DataPetugasController::class, 'index'])->name('dataPetugas');
-Route::get('/tambahdatapetugas', [DataPetugasController::class, 'add'])->name('tambahDataPetugas');
-Route::post('/storedatapetugas', [DataPetugasController::class, 'store'])->name('storeDataPetugas');
-Route::get('/editdatapetugas/{id}', [DataPetugasController::class, 'edit'])->name('editDataPetugas');
-Route::put('/updatedatapetugas/{id}', [DataPetugasController::class, 'update'])->name('updateDataPetugas');
-Route::delete('/deletedatapetugas/{id}', [DataPetugasController::class, 'delete'])->name('deleteDataPetugas');
-Route::get('/datarekammedis', [DataRekamMedisController::class, 'index'])->name('dataRekamMedis');
-Route::get('/tambahdatarekammedis', [DataRekamMedisController::class, 'add'])->name('tambahDataRekamMedis');
-Route::post('/storedatarekammedis', [DataRekamMedisController::class, 'store'])->name('storeDataRekamMedis');
-Route::get('/editdatarekammedis/{id}', [DataRekamMedisController::class, 'edit'])->name('editDataRekamMedis');
-Route::put('/updatedatarekammedis/{id}', [DataRekamMedisController::class, 'update'])->name('updateDataRekamMedis');
-Route::delete('/deletedatarekammedis/{id}', [DataRekamMedisController::class, 'delete'])->name('deleteDataRekamMedis');
-Route::post('/uploadfile', [DataRekamMedisController::class, 'importFile'])->name('importFile');
-
 
 Route::get('/dashboard-kepala', [DashboardKepalaController::class, 'index'])->name('dashboardKepala');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 require __DIR__ . '/auth.php';
 require __DIR__ . '/berita-acara.php';
+<<<<<<< HEAD
 require __DIR__ . '/statistik-retensi.php';
+=======
+require __DIR__ . '/data-petugas.php';
+require __DIR__ . '/data-rm.php';
+require __DIR__ . '/data-retensi.php';
+>>>>>>> bf0bef7e3666e3042d0ccdaaa284398067d83a4f
