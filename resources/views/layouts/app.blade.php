@@ -19,15 +19,19 @@
     <!-- Popper -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- APEX CHART --}}
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <!-- Main Styling -->
     <link href="{{ asset('./assets/css/argon-dashboard-tailwind.css?v=1.0.1') }}" rel="stylesheet" />
     <style>
-
+        .popup-active{
+            background-color: rgba(0, 0, 0, 0.5)
+        }
     </style>
 </head>
 
-<body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
+<body id="body" class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
     <div class="absolute w-full header-green min-h-75 top-0"></div>
     <!-- sidenav  -->
     @include('components.sidebar')
@@ -49,6 +53,55 @@
 <script src="{{ asset('./assets/js/plugins/perfect-scrollbar.min.js') }}" async></script>
 <!-- main script file  -->
 <script src="{{ asset('./assets/js/argon-dashboard-tailwind.js?v=1.0.1') }}" async></script>
+
+<script>
+    const modal = document.getElementById('modal');
+    const showModalButton = document.getElementById('showModalButton');
+    const closeModalButton = document.getElementById('closeModalButton');
+    const edit = document.getElementsByClassName('edit');
+    const hapus = document.getElementsByClassName('hapus');
+    const body = document.getElementById('body')
+    
+    // Function to open the modal
+    function openModal() {
+        modal.style.display = 'block';
+        edit.disabled = true
+        hapus.disabled = true
+        body.classList.add('popup-active')
+    }
+    
+    // Function to close the modal
+    function closeModal() {
+        modal.style.display = 'none';
+        edit.disabled = false
+        hapus.disabled = false
+        body.classList.remove('popup-active')
+    }
+
+    // Event listeners to open and close the modal
+    showModalButton.addEventListener('click', openModal);
+    closeModalButton.addEventListener('click', closeModal);
+
+    // Close the modal if the user clicks outside of it
+    window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        closeModal();
+    }
+    });
+
+    function handleEdit(id){
+        const modalEdit = document.getElementById(`modalEdit${id}`)
+        modalEdit.style.display = 'block'
+        body.classList.add('popup-active')
+    }
+    
+    function closedModalEdit(id){
+        const modalEdit = document.getElementById(`modalEdit${id}`)
+        modalEdit.style.display = 'none'
+        body.classList.remove('popup-active')
+    }
+
+</script>
 
 @yield('extraJS')
 </html>

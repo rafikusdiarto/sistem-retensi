@@ -50,3 +50,4 @@ Route::get('/dashboard-kepala', [DashboardKepalaController::class, 'index'])->na
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/berita-acara.php';
+require __DIR__ . '/statistik-retensi.php';

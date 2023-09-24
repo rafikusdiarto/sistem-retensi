@@ -18,8 +18,8 @@
                     </a>
                 </div>
                 <div class="flex-auto px-0 pt-0 pb-2">
-                    <div class="p-5 overflow-x-auto">
-                        <table class="items-center w-[96.5%] my-5 mb-0 align-top border-collapse display">
+                    <div class="p-6 overflow-x-auto">
+                        <table class="items-center w-full my-5 mb-0 align-top border-collapse display">
                             <thead class="align-bottom">
                                 <tr class="header-green rounded-full text-white">
                                     <th
