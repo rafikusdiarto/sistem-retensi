@@ -33,10 +33,7 @@ Route::get('/dashboard-kepala', [DashboardKepalaController::class, 'index'])->na
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/berita-acara.php';
-<<<<<<< HEAD
 require __DIR__ . '/statistik-retensi.php';
-=======
 require __DIR__ . '/data-petugas.php';
 require __DIR__ . '/data-rm.php';
 require __DIR__ . '/data-retensi.php';
->>>>>>> bf0bef7e3666e3042d0ccdaaa284398067d83a4f

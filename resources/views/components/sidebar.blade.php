@@ -159,13 +159,8 @@
                     </a>
                 </li>
                 <li class="mt-0.5 w-full">
-<<<<<<< HEAD
                     <a href="{{ route('statistikRetensi') }}"
                         class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors {{ (request()->segment(1) == 'statistik-retensi') ? 'bg-menu text-white' : '' }}">
-=======
-                    <a
-                        class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors">
->>>>>>> bf0bef7e3666e3042d0ccdaaa284398067d83a4f
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                             <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
