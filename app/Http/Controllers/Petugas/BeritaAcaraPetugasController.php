@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Petugas;
 
-use App\Http\Controllers\Controller;
+use PDF;
+use Carbon\Carbon;
 use App\Models\BeritaAcara;
-use App\Models\BeritaAcaraLampirans;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
 
 class BeritaAcaraPetugasController extends Controller
 {
@@ -59,27 +61,70 @@ class BeritaAcaraPetugasController extends Controller
             'mimes' => 'lampiran harus berupa file .pdf',
         ]);
         try {
-            $beritaAcara = BeritaAcara::create([
-                'user_id' => \Auth::user()->id,
-                'cara_pemusnahan' => $request->cara_pemusnahan,
-                'tanggal_pemusnahan' => $request->tanggal_pemusnahan,
-                'waktu_pemusnahan' => $request->waktu_pemusnahan,
-                'lokasi_pemusnahan' => $request->lokasi_pemusnahan,
-                'ketua_rm' => $request->ketua_rekam_medis,
-            ]);
-
-
             if ($request->hasFile('lampiran')) {
-                $files = $request->file('lampiran');
-                foreach ($files as $file) {
-                    $filename = $file->getClientOriginalName();
-                    $file->move('berita_acara', $filename);
-                    BeritaAcaraLampirans::create([
-                        'berita_acara_id' => $beritaAcara->id,
-                        'filename' => $filename
-                    ]);
+                $pdf_merge = PDFMerger::init();
+                $tanggal = $request->tanggal_pemusnahan;
+                $carbonTanggal = Carbon::parse($tanggal);
+                $formatTanggal = $carbonTanggal->format('d, F, Y');
+                $now = Carbon::now();
+                $now_format = $now->format('d, F, Y');
+                $namaBulanIndonesia = [
+                    'January' => 'Januari',
+                    'February' => 'Februari',
+                    'March' => 'Maret',
+                    'April' => 'April',
+                    'May' => 'Mei',
+                    'June' => 'Juni',
+                    'July' => 'Juli',
+                    'August' => 'Agustus',
+                    'September' => 'September',
+                    'October' => 'Oktober',
+                    'November' => 'November',
+                    'December' => 'Desember',
+                ];
+
+                foreach ($namaBulanIndonesia as $bulanInggris => $bulanIndonesia) {
+                    $now_format = str_replace($bulanInggris, $bulanIndonesia, $now_format);
                 }
+                foreach ($namaBulanIndonesia as $bulanInggris => $bulanIndonesia) {
+                    $formatTanggal = str_replace($bulanInggris, $bulanIndonesia, $formatTanggal);
+                }
+                $dom_pdf = PDF::loadview('petugas.berita-acara.print', [
+                    'tahun' => $now->year,
+                    'formatTanggal' => $now_format,
+                    'nama_petugas' => $request->name,
+                    'jabatan' => $request->jabatan,
+                    'cara_pemusnahan' => $request->cara_pemusnahan,
+                    'tanggal_pemusnahan' => $formatTanggal,
+                    'waktu_pemusnahan' => $request->waktu_pemusnahan,
+                    'lokasi_pemusnahan' => $request->lokasi_pemusnahan,
+                    'ketua_rm' => $request->ketua_rekam_medis,
+                    'lampiran' => 'Berita Acara Pemusnahan ' . $formatTanggal . '.pdf'
+                ])->setPaper('legal');
+                $path = time() . '.pdf';
+                file_put_contents(public_path('/berita_acara/' . $path), $dom_pdf->output());
+                $pdf_merge->addPDF(public_path('/berita_acara/' . $path), 'all');
+
+                $files = $request->file('lampiran');
+                foreach ($files as $key => $value) {
+                    $pdf_merge->addPDF($value->getPathName(), 'all');
+                }
+                $filename = 'Berita Acara Pemusnahan ' . $formatTanggal . '.pdf';
+                $pdf_merge->merge();
+                $pdf_merge->save(public_path('/berita_acara/' . $filename));
+
+                BeritaAcara::create([
+                    'user_id' => \Auth::user()->id,
+                    'cara_pemusnahan' => $request->cara_pemusnahan,
+                    'tanggal_pemusnahan' => $request->tanggal_pemusnahan,
+                    'waktu_pemusnahan' => $request->waktu_pemusnahan,
+                    'lokasi_pemusnahan' => $request->lokasi_pemusnahan,
+                    'ketua_rm' => $request->ketua_rekam_medis,
+                    'lampiran' => $filename
+                ]);
+
             }
+
             return redirect()->route('beritaAcara')->with('success', 'Data berhasil ditambahkan');
         } catch (\Throwable $e) {
             return redirect()->back()->withError($e->getMessage());
@@ -118,26 +163,67 @@ class BeritaAcaraPetugasController extends Controller
             'mimes' => 'lampiran harus berupa file .pdf',
         ]);
         try {
-            $beritaAcara = BeritaAcara::find($id)->update([
-                'user_id' => \Auth::user()->id,
-                'cara_pemusnahan' => $request->cara_pemusnahan,
-                'tanggal_pemusnahan' => $request->tanggal_pemusnahan,
-                'waktu_pemusnahan' => $request->waktu_pemusnahan,
-                'lokasi_pemusnahan' => $request->lokasi_pemusnahan,
-                'ketua_rm' => $request->ketua_rm,
-            ]);
-
-            BeritaAcaraLampirans::where('berita_acara_id', $id)->delete();
-
             if ($request->hasFile('lampiran')) {
-                $files = $request->file('lampiran');
-                foreach ($files as $file) {
-                    $filename = $file->getClientOriginalName();
-                    BeritaAcaraLampirans::create([
-                        'berita_acara_id' => $id,
-                        'filename' => $filename
-                    ]);
+                $pdf_merge = PDFMerger::init();
+                $tanggal = $request->tanggal_pemusnahan;
+                $carbonTanggal = Carbon::parse($tanggal);
+                $formatTanggal = $carbonTanggal->format('d, F, Y');
+                $now = Carbon::now();
+                $now_format = $now->format('d, F, Y');
+                $namaBulanIndonesia = [
+                    'January' => 'Januari',
+                    'February' => 'Februari',
+                    'March' => 'Maret',
+                    'April' => 'April',
+                    'May' => 'Mei',
+                    'June' => 'Juni',
+                    'July' => 'Juli',
+                    'August' => 'Agustus',
+                    'September' => 'September',
+                    'October' => 'Oktober',
+                    'November' => 'November',
+                    'December' => 'Desember',
+                ];
+
+                foreach ($namaBulanIndonesia as $bulanInggris => $bulanIndonesia) {
+                    $now_format = str_replace($bulanInggris, $bulanIndonesia, $now_format);
                 }
+                foreach ($namaBulanIndonesia as $bulanInggris => $bulanIndonesia) {
+                    $formatTanggal = str_replace($bulanInggris, $bulanIndonesia, $formatTanggal);
+                }
+                $dom_pdf = PDF::loadview('petugas.berita-acara.print', [
+                    'tahun' => $now->year,
+                    'formatTanggal' => $now_format,
+                    'nama_petugas' => $request->name,
+                    'jabatan' => $request->jabatan,
+                    'cara_pemusnahan' => $request->cara_pemusnahan,
+                    'tanggal_pemusnahan' => $formatTanggal,
+                    'waktu_pemusnahan' => $request->waktu_pemusnahan,
+                    'lokasi_pemusnahan' => $request->lokasi_pemusnahan,
+                    'ketua_rm' => $request->ketua_rm,
+                    'lampiran' => 'Berita Acara Pemusnahan ' . $formatTanggal . '.pdf'
+                ])->setPaper('legal');
+                $path = time() . '.pdf';
+                file_put_contents(public_path('/berita_acara/' . $path), $dom_pdf->output());
+                $pdf_merge->addPDF(public_path('/berita_acara/' . $path), 'all');
+
+                $files = $request->file('lampiran');
+                foreach ($files as $key => $value) {
+                    $pdf_merge->addPDF($value->getPathName(), 'all');
+                }
+                $filename = time() . '.pdf';
+                $pdf_merge->merge();
+                $pdf_merge->save(public_path('/berita_acara/' . $filename));
+
+                BeritaAcara::find($id)->update([
+                    'user_id' => \Auth::user()->id,
+                    'cara_pemusnahan' => $request->cara_pemusnahan,
+                    'tanggal_pemusnahan' => $request->tanggal_pemusnahan,
+                    'waktu_pemusnahan' => $request->waktu_pemusnahan,
+                    'lokasi_pemusnahan' => $request->lokasi_pemusnahan,
+                    'ketua_rm' => $request->ketua_rm,
+                    'lampiran' => $filename
+                ]);
             }
 
             return redirect()->route('beritaAcara')->with('success', 'Data berhasil diubah');
@@ -153,6 +239,16 @@ class BeritaAcaraPetugasController extends Controller
         try {
             BeritaAcara::find($id)->delete();
             return redirect()->route('beritaAcara')->with('success', 'Data berhasil dihapus');
+        } catch (\Throwable $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+    public function download($file)
+    {
+        try {
+            return response()->download(public_path('/berita_acara/' . $file));
         } catch (\Throwable $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
