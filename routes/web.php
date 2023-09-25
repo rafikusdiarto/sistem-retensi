@@ -38,3 +38,4 @@ require __DIR__ . '/data-petugas.php';
 require __DIR__ . '/data-rm.php';
 require __DIR__ . '/data-retensi.php';
 require __DIR__ . '/sop-retensi.php';
+require __DIR__ . '/arsip-rm.php';
