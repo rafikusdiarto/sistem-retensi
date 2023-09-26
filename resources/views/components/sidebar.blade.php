@@ -143,7 +143,7 @@
                         class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                            <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
+                            <i class="relative top-0 text-sm leading-normal text-pink-600 ni ni-ruler-pencil"></i>
                         </div>
                         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Laporan Retensi</span>
                     </a>
@@ -163,7 +163,7 @@
                         class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors {{ (request()->segment(1) == 'statistik-retensi') ? 'bg-menu text-white' : '' }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                            <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
+                            <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-chart-bar-32"></i>
                         </div>
                         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Statistik Retensi</span>
                     </a>
@@ -183,7 +183,7 @@
                         class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors {{ (request()->segment(1) == 'berita-acara') ? 'bg-menu text-white' : '' }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                            <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"></i>
+                            <i class="relative top-0 text-sm leading-normal text-blue-600 ni ni-paper-diploma"></i>
                         </div>
                         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Berita Acara</span>
                     </a>

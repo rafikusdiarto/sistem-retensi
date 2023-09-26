@@ -23,7 +23,7 @@
                             <thead class="align-bottom">
                                 <tr class="header-green rounded-full text-white">
                                     <th
-                                        class="text-left px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                        class="text-left px-6 py-3 font-bold uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
                                         No</th>
                                     <th
                                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
@@ -56,26 +56,26 @@
                                             class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400 uppercase">{{$item->cara_pemusnahan}}
                                         </td>
                                         <td
-                                            class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                            class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                             <a href="{{route('editBeritaAcara', $item->id)}}"
                                             class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
                                             <i class="fas fa-pen ms-2"></i>
                                         </a>
                                         </td>
                                         <td
-                                            class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <a href="{{route('editDataPetugas', $item->id)}}"
-                                            class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Cetak
+                                            class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                            <a href="{{route('downloadBeritaAcara', $item->lampiran)}}"
+                                            class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md" style="background-color: #cd9018;">Cetak
                                             <i class="fas fa-print ms-2"></i>
                                         </a>
                                         </td>
                                         <td
-                                            class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                            class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                             <form action="{{route('deleteBeritaAcara', $item->id)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Hapus
+                                                class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md" style="background-color: #CD3716;">Hapus
                                                 <i class="fas fa-trash ms-2"></i>
                                             </button>
 
