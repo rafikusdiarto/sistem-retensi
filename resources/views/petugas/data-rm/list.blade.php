@@ -26,8 +26,7 @@
                     <div class="p-5 overflow-x-auto">
                         <div class="flex items-center justify-between mb-5">
                             <div class="items-center">
-                                <label for="countries"
-                                    class="block text-sm flex font-medium items-center mx-2 text-slate">
+                                <label for="countries" class="block text-sm flex font-medium items-center mx-2 text-slate">
                                     Show
                                     <select id="countries"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-slate dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -49,59 +48,68 @@
                                 <div class="p-3 ">
                                     <div class="flex items-center">
                                         <span class="mx-2 text-slate">Periode</span>
-
                                         <div class="relative">
                                             <div
-                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                <svg class="w-4 h-4 text-slate" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                </svg>
+                                            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                            <svg class="w-4 h-4 text-slate" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                        </svg>
+                                        <form action="{{route('searchDataRekamMedis')}}" method="GET">
+                                        @csrf
                                             </div>
-                                            <input name="start" type="text"
+                                            <input type="date" id="start_date" name="start_date"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-slate dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Start year">
-                                        </div>
-                                        <span class="mx-2 text-slate">to</span>
-                                        <div class="relative">
-                                            <div
-                                                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                <svg class="w-4 h-4 text-slate" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                </svg>
                                             </div>
-                                            <input name="end" type="text"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-slate dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="End year">
-                                        </div>
-                                        <div class="relative ml-2">
-                                            <button type="button"
-                                                class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Cari</button>
-                                        </div>
+                                            <span class="mx-2 text-slate">to</span>
+                                            <div class="relative">
+                                                <div
+                                                    class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                    <svg class="w-4 h-4 text-slate" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path
+                                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                                    </svg>
+                                                </div>
+                                                <input type="date" id="end_date" name="end_date"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-slate dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="End year">
+                                            </div>
+                                            <div class="relative ml-2">
+                                                <button type="submit"
+                                                    class="inline-block px-6 py-3 mr-1 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Cari</button>
+                                            </div>
+                                        </form>
+
+                                            <div class="relative ml-2">
+                                                <a href="{{route('dataRekamMedis')}}"
+                                                    class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Reset</a>
+                                            </div>
                                     </div>
                                 </div>
 
 
-                                <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease xl:w-20">
+                                <div
+                                    class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease xl:w-20">
                                     <span
                                         class="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
                                         <i class="fas fa-search" aria-hidden="true"></i>
                                     </span>
-                                    <input type="text"
+                                    <input type="text" id="myInput"
                                         class="pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
                                         placeholder="Masukkan nomor RM" aria-controls="myTable" />
                                 </div>
 
                             </div>
                         </div>
-                        <form action="{{route('retensi')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('retensi') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <table class="items-center w-[96.5%] my-5 mb-0 align-top border-collapse" datatable id="myTable">
+                            <table class="items-center w-[96.5%] my-5 mb-0 align-top border-collapse" datatable
+                                id="myTable">
                                 <thead class="align-bottom">
                                     <tr class="header-green rounded-full text-white">
                                         <th
@@ -140,9 +148,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        <?php $no = 1; ?>
-                                        @foreach ($pasien as $item)
-
+                                    <?php $no = 1; ?>
+                                    @foreach ($pasien as $item)
                                         <?php
                                         // $tanggalAwal = \Carbon\Carbon::parse($item->krs);
                                         // $expiredDate = \Carbon\Carbon::now()->subYears(5)->subDays(5)->toDateString();
@@ -152,9 +159,11 @@
                                         $tanggalRetensi = $tanggal1->addYears(5);
                                         $selisihHari = $tanggalRetensi->diffInDays(\Carbon\Carbon::now());
 
-                                    //    (dd($selisihHari));
+                                        //    (dd($selisihHari));
+
                                         ?>
-                                        <tr class="{{ $selisihHari <= 5 || \Carbon\Carbon::now() > $tanggalRetensi ? 'bg-[#FFC7B6]' : '' }}">
+                                        <tr
+                                            class="{{ $selisihHari <= 5 || \Carbon\Carbon::now() > $tanggalRetensi ? 'bg-[#FFC7B6]' : '' }}">
                                             <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                                 {{ $no++ }}
                                             </td>
@@ -188,7 +197,8 @@
                                             </td>
                                             <td
                                                 class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                <form action="{{ route('deleteDataRekamMedis', $item->id) }}" method="POST">
+                                                <form action="{{ route('deleteDataRekamMedis', $item->id) }}"
+                                                    method="POST">
                                                     @csrf
                                                     <button type="submit"
                                                         class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Hapus
@@ -205,10 +215,11 @@
                                                 </label>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
-                            <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid text-right rounded-t-2xl border-b-transparent">
+                            <div
+                                class="p-6 pb-0 mb-0 border-b-0 border-b-solid text-right rounded-t-2xl border-b-transparent">
                                 <button type="submit"
                                     class="btn-shadow font-bold uppercase text-xs ease-in bg-red-400 text-white rounded px-10 py-2 mt-2 hover:-translate-y-px hover:shadow-md">Arsipkan
                                     Pilihan
@@ -222,12 +233,86 @@
     </div>
 @endsection
 @section('extraJS')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
     <script>
         var table = $('#myTable').DataTable()
     </script>
+    <script>
+        $('#myInput').on('keyup', function() {
+            table.search(this.value).draw();
+        });
+    </script>
+    {{-- <script>
+    $(document).on("click", "#reset", function(e) {
+            e.preventDefault();
+            $("#myTable").DataTable().ajax.reload(null, false);
+        });
+    </script> --}}
+    {{-- <script>
+        function fetch(start_date, end_date) {
+            $.ajax({
+                url: "{{ route('searchDataRekamMedis') }}",
+                type: "GET",
+                data: {
+                    start_date: start_date,
+                    end_date: end_date
+                },
+                dataType: "json",
+                success: function(data) {
+                    // console.log(data);
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    // Datatables
+                    var i = 1;
+                    $('#myTable').DataTable({
+                        "data": data.pasien,
+                        // responsive
+                        "responsive": true,
+                        "columns": [{
+                                "data": "id",
+                                "render": function(data, type, row, meta) {
+                                    return i++;
+                                }
+                            },
+                            {
+                                "data": "no_rm"
+                            },
+                            {
+                                "data": "nik",
+                            },
+                            {
+                                "data": "nama",
+                            },
+                            {
+                                "data": "jenis_kelamin"
+                            },
+                            {
+                                "data": "mrs"
+                            },
+                            {
+                                "data": "krs"
+                            },
+                            {
+                                "data": "jenis_pelayanan"
+                            },
 
-
+                        ]
+                    });
+                }
+            });
+        }
+        fetch();
+        // Filter
+        $(document).on("click", "#filter", function(e) {
+            e.preventDefault();
+            var start_date = $("#start_date").val();
+            var end_date = $("#end_date").val();
+            if (start_date == "" || end_date == "") {
+                alert("Both date required");
+            } else {
+                $('#myTable').DataTable().destroy();
+                fetch(start_date, end_date);
+            }
+        });
+    </script> --}}
 @endsection

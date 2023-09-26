@@ -145,45 +145,43 @@ class DataRekamMedisController extends Controller
 			'file' => 'required|mimes:csv,xls,xlsx'
 		]);
 
-        $file = $request->file('file');
-        $nama_file = rand().$file->getClientOriginalName();
-        $file->move('data_excel',$nama_file);
+        try {
+            $file = $request->file('file');
+            $nama_file = rand().$file->getClientOriginalName();
+            $file->move('data_excel',$nama_file);
 
-        // $heading = (new HeadingRowImport)->toArray($file);
-        // dd($heading);
+            $data_pasien = Excel::toArray(new PasienImport, public_path('/data_excel/'.$nama_file));
+            $data_pasien = $data_pasien[0];
+            $insert_dataPasien = [];
 
-        $data_pasien = Excel::toArray(new PasienImport, public_path('/data_excel/'.$nama_file));
-        $data_pasien = $data_pasien[0];
-        $insert_dataPasien = [];
+            foreach ($data_pasien as $row) {
+                // $x = intval($row['tgl_daftar']);
+                // $y = intval($row['tgl_pulang']);
+                $insert_dataPasien[] = [
+                    'no_rm' => $row['no_rm'],
+                    'nik' => $row['nik'],
+                    'nama' => $row['nama'],
+                    'jenis_kelamin' => $row['jenis_kelamin'],
+                    // 'tgl_daftar' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($x),
+                    // 'tgl_pulang' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($y),
+                    // 'lama_dirawat' => $row['lama_dirawat'],
+                    // 'hari_perawatan' => $row['hari_perawatan'],
+                    ];
+            }
 
-        foreach ($data_pasien as $row) {
-            // $x = intval($row['tgl_daftar']);
-            // $y = intval($row['tgl_pulang']);
-            $insert_dataPasien[] = [
-                'no_rm' => $row['no_rm'],
-                'nik' => $row['nik'],
-                'nama' => $row['nama'],
-                'jenis_kelamin' => $row['jenis_kelamin'],
-                // 'tgl_daftar' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($x),
-                // 'tgl_pulang' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($y),
-                // 'lama_dirawat' => $row['lama_dirawat'],
-                // 'hari_perawatan' => $row['hari_perawatan'],
-                ];
+            // dd($data_pasien);
+
+            if (!empty($insert_dataPasien)) {
+                DB::table('pasiens')->insert($insert_dataPasien);
+            }
+            // dd($data_pasien);
+            return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil diimport');
+
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
         }
-
-        // dd($data_pasien);
-
-        if (!empty($insert_dataPasien)) {
-            DB::table('pasiens')->insert($insert_dataPasien);
-        }
-        // dd($data_pasien);
-        return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil diimport');
-        // try {
-        // } catch(\Throwable $e){
-        //     return redirect()->back()->withError($e->getMessage());
-        // } catch(\Illuminate\Database\QueryException $e){
-        //     return redirect()->back()->withError($e->getMessage());
-        // }
     }
 
     public function changeStatus(Request $request){
@@ -192,6 +190,25 @@ class DataRekamMedisController extends Controller
             Pasien::whereIn('id', $id_pasien)
                 ->update(['status' => 'inactive']);
             return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil diretensi');
+
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
+    public function search(Request $request){
+        try {
+            $start_date = $request->start_date;
+            $end_date = $request->end_date;
+
+            $pasien = Pasien::whereDate('krs', '>=', $start_date)
+                            ->whereDate('krs', '<=', $end_date)
+                            ->where('status', 'active')
+                            ->get();
+            // dd($pasien)
+            return view('petugas.data-rm.list', ['pasien' => $pasien]);
 
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());

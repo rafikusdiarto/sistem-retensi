@@ -9,6 +9,8 @@
     <title>Sistem Retensi</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+
     <link href="{{ asset('DataTables/datatables.css') }}" rel="stylesheet">
 
     <!-- Font Awesome Icons -->
@@ -61,7 +63,7 @@
     const edit = document.getElementsByClassName('edit');
     const hapus = document.getElementsByClassName('hapus');
     const body = document.getElementById('body')
-    
+
     // Function to open the modal
     function openModal() {
         modal.style.display = 'block';
@@ -69,7 +71,7 @@
         hapus.disabled = true
         body.classList.add('popup-active')
     }
-    
+
     // Function to close the modal
     function closeModal() {
         modal.style.display = 'none';
@@ -94,7 +96,7 @@
         modalEdit.style.display = 'block'
         body.classList.add('popup-active')
     }
-    
+
     function closedModalEdit(id){
         const modalEdit = document.getElementById(`modalEdit${id}`)
         modalEdit.style.display = 'none'
