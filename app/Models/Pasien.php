@@ -19,4 +19,5 @@ class Pasien extends Model
         'mrs',
         'krs',
     ];
+    protected $dates = ['tgl_retensi'];
 }

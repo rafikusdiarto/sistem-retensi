@@ -68,6 +68,7 @@ class DataRekamMedisController extends Controller
             'dokter' => $request->dokter,
             'mrs' => $request->mrs,
             'krs' => $request->krs,
+            'tgl_retensi' => (new Carbon($request->krs))->addYears(5),
             'alamat' => $request->alamat,
             'status' => 'active',
             ]);
@@ -118,6 +119,7 @@ class DataRekamMedisController extends Controller
                 'dokter' => $request->dokter,
                 'mrs' => $request->mrs,
                 'krs' => $request->krs,
+                'tgl_retensi' => (new Carbon($request->krs))->addYears(5),
                 'alamat' => $request->alamat,
                 ]);
             return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil diubah');
