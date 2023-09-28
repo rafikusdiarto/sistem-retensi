@@ -151,19 +151,12 @@
                                     <?php $no = 1; ?>
                                     @foreach ($pasien as $item)
                                         <?php
-                                        // $tanggalAwal = \Carbon\Carbon::parse($item->krs);
-                                        // $expiredDate = \Carbon\Carbon::now()->subYears(5)->subDays(5)->toDateString();
-
-                                        $tanggal1 = \Carbon\Carbon::parse($item->krs);
-
-                                        $tanggalRetensi = $tanggal1->addYears(5);
-                                        $selisihHari = $tanggalRetensi->diffInDays(\Carbon\Carbon::now());
-
-                                        //    (dd($selisihHari));
-
+                                        $tgl_krs = \Carbon\Carbon::parse($item->tgl_retensi);
+                                        $tgl_retensi = \Carbon\Carbon::parse($item->tgl_retensi);
+                                        $tanggalKadaluwarsa = \Carbon\Carbon::now()->subYears(5)->subDays(5);
                                         ?>
                                         <tr
-                                            class="{{ $selisihHari <= 5 || \Carbon\Carbon::now() > $tanggalRetensi ? 'bg-[#FFC7B6]' : '' }}">
+                                            class="{{ $tgl_retensi <= \Carbon\Carbon::now()->addDays(5) || \Carbon\Carbon::now() > $tgl_retensi || $tgl_krs <= $tanggalKadaluwarsa ? 'bg-[#FFC7B6]' : '' }}">
                                             <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                                 {{ $no++ }}
                                             </td>
