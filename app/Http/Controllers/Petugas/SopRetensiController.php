@@ -24,6 +24,17 @@ class SopRetensiController extends Controller
         }
     }
 
+    public function show($id){
+        try {
+            $sop_retensi = SopRetensi::find($id);
+            return view('petugas.sop-retensi.show', ['sop_retensi' => $sop_retensi]);
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
     public function store(Request $request){
         $request->validate([
             'lampiran' => 'required|mimes:pdf,xlxs,xlx,docx,doc',
