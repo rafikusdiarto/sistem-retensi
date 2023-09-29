@@ -35,6 +35,7 @@
             background-color: rgba(0, 0, 0, 0.5)
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body id="body" class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
