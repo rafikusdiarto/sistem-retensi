@@ -21,7 +21,7 @@ class DataRetensiController extends Controller
 
     public function index(){
         try {
-            $data_pasien = Pasien::all();
+            $data_pasien = Pasien::where('status', '=', 'inactive')->get();
             // dd($data_pasien);
             return view('petugas.data-retensi.list', ['pasien' => $data_pasien]);
         } catch(\Throwable $e){
@@ -33,7 +33,7 @@ class DataRetensiController extends Controller
 
     public function print(Request $request){
         try {
-            $data_pasien = Pasien::all();
+            $data_pasien = Pasien::where('status', '=', 'inactive')->get();
             $pdf = PDF::loadview('petugas.data-retensi.print', ['pasien' => $data_pasien])->setPaper('legal');
             return $pdf->stream('data-retensi', array("Attachment" => false));
         } catch(\Throwable $e){
@@ -42,4 +42,42 @@ class DataRetensiController extends Controller
             return redirect()->back()->withError($e->getMessage());
         }
     }
+
+    public function search(Request $request){
+        try {
+            $start_date = $request->start_date;
+            $end_date = $request->end_date;
+
+            $pasien = Pasien::whereDate('krs', '>=', $start_date)
+                            ->whereDate('krs', '<=', $end_date)
+                            ->where('status', 'inactive')
+                            ->get();
+            // dd($pasien)
+            return view('petugas.data-retensi.list', ['pasien' => $pasien]);
+
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
+    public function update(Request $request, $id){
+        try {
+            DB::table('pasiens')
+                ->where('id','=',$id)
+                ->update([
+                    'status'=>$request->status
+                ]);
+            return response()->json([
+                'success' => true,
+            ]);
+
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
 }
