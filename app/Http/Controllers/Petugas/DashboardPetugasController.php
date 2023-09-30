@@ -19,9 +19,13 @@ class DashboardPetugasController extends Controller
         try {
         $tanggalKadaluwarsa = Carbon::now()->subYears(5)->subDays(5);
 
-        $dataPasien = Pasien::where('krs', '<=', $tanggalKadaluwarsa)
-                            ->orWhere('tgl_retensi','<=', Carbon::now() )
-                            ->orWhere('tgl_retensi','<=', Carbon::now()->addDays(5) )
+        $dataPasien = DB::table('pasiens')
+                            ->where('status','=', 'active' )
+                            ->whereDate('tgl_retensi','<=', Carbon::now())
+                            ->orWhere(function ($query) {
+                                $query->whereDate('tgl_retensi','<=', Carbon::now()->addDays(5))
+                                ->where('status','=', 'active' );
+                            })
                             ->count();
                             // dd($dataPasien);
             return view('petugas.dashboard', ['pasienRetensi' => $dataPasien]);

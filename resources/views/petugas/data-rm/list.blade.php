@@ -156,7 +156,7 @@
                                         $tanggalKadaluwarsa = \Carbon\Carbon::now()->subYears(5)->subDays(5);
                                         ?>
                                         <tr
-                                            class="{{ $tgl_retensi <= \Carbon\Carbon::now()->addDays(5) || \Carbon\Carbon::now() > $tgl_retensi || $tgl_krs <= $tanggalKadaluwarsa ? 'bg-[#FFC7B6]' : '' }}">
+                                            class="{{ $tgl_retensi <= \Carbon\Carbon::now()->addDays(5) || $tgl_retensi <= \Carbon\Carbon::now() || $tgl_krs <= $tanggalKadaluwarsa ? 'bg-[#FFC7B6]' : '' }}">
                                             <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                                 {{ $no++ }}
                                             </td>
@@ -236,76 +236,4 @@
             table.search(this.value).draw();
         });
     </script>
-    {{-- <script>
-    $(document).on("click", "#reset", function(e) {
-            e.preventDefault();
-            $("#myTable").DataTable().ajax.reload(null, false);
-        });
-    </script> --}}
-    {{-- <script>
-        function fetch(start_date, end_date) {
-            $.ajax({
-                url: "{{ route('searchDataRekamMedis') }}",
-                type: "GET",
-                data: {
-                    start_date: start_date,
-                    end_date: end_date
-                },
-                dataType: "json",
-                success: function(data) {
-                    // console.log(data);
-
-                    // Datatables
-                    var i = 1;
-                    $('#myTable').DataTable({
-                        "data": data.pasien,
-                        // responsive
-                        "responsive": true,
-                        "columns": [{
-                                "data": "id",
-                                "render": function(data, type, row, meta) {
-                                    return i++;
-                                }
-                            },
-                            {
-                                "data": "no_rm"
-                            },
-                            {
-                                "data": "nik",
-                            },
-                            {
-                                "data": "nama",
-                            },
-                            {
-                                "data": "jenis_kelamin"
-                            },
-                            {
-                                "data": "mrs"
-                            },
-                            {
-                                "data": "krs"
-                            },
-                            {
-                                "data": "jenis_pelayanan"
-                            },
-
-                        ]
-                    });
-                }
-            });
-        }
-        fetch();
-        // Filter
-        $(document).on("click", "#filter", function(e) {
-            e.preventDefault();
-            var start_date = $("#start_date").val();
-            var end_date = $("#end_date").val();
-            if (start_date == "" || end_date == "") {
-                alert("Both date required");
-            } else {
-                $('#myTable').DataTable().destroy();
-                fetch(start_date, end_date);
-            }
-        });
-    </script> --}}
 @endsection
