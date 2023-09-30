@@ -155,17 +155,22 @@ class DataRekamMedisController extends Controller
             $data_pasien = Excel::toArray(new PasienImport, public_path('/data_excel/'.$nama_file));
             $data_pasien = $data_pasien[0];
             $insert_dataPasien = [];
-
+            // (new Carbon($request->krs))->addYears(5)
             foreach ($data_pasien as $row) {
-                // $x = intval($row['tgl_daftar']);
-                // $y = intval($row['tgl_pulang']);
+                $x = intval($row['tgl_daftar']);
+                $y = intval($row['tgl_pulang']);
                 $insert_dataPasien[] = [
                     'no_rm' => $row['no_rm'],
                     'nik' => $row['nik'],
                     'nama' => $row['nama'],
                     'jenis_kelamin' => $row['jenis_kelamin'],
-                    // 'tgl_daftar' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($x),
-                    // 'tgl_pulang' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($y),
+                    'jenis_pelayanan' => $row['jenis_perawatan'],
+                    'dokter' => $row['nama_dokter'],
+                    'alamat' => $row['kota'],
+                    'mrs' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($x),
+                    'krs' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($y),
+                    'tgl_retensi' => (new Carbon(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($y)))->addYears(5),
+                    'status' => 'active',
                     // 'lama_dirawat' => $row['lama_dirawat'],
                     // 'hari_perawatan' => $row['hari_perawatan'],
                     ];
@@ -174,7 +179,13 @@ class DataRekamMedisController extends Controller
             // dd($data_pasien);
 
             if (!empty($insert_dataPasien)) {
-                DB::table('pasiens')->insert($insert_dataPasien);
+                foreach (array_chunk($insert_dataPasien,1000) as $t) {
+
+                    DB::table('pasiens')->insert($t);
+
+
+                 }
+
             }
             // dd($data_pasien);
             return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil diimport');

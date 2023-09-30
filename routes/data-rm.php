@@ -9,7 +9,7 @@ Route::post('/storedatarekammedis', [DataRekamMedisController::class, 'store'])-
 Route::get('/datarekammedis/editdatarekammedis/{id}', [DataRekamMedisController::class, 'edit'])->name('editDataRekamMedis');
 Route::put('/updatedatarekammedis/{id}', [DataRekamMedisController::class, 'update'])->name('updateDataRekamMedis');
 Route::post('/retensidatarekammedis', [DataRekamMedisController::class, 'changeStatus'])->name('retensi');
-Route::delete('/deletedatarekammedis/{id}', [DataRekamMedisController::class, 'delete'])->name('deleteDataRekamMedis');
+Route::get('/deletedatarekammedis/{id}', [DataRekamMedisController::class, 'delete'])->name('deleteDataRekamMedis');
 Route::get('/datarekammedis/searchdatarekammedis', [DataRekamMedisController::class, 'search'])->name('searchDataRekamMedis');
 Route::post('/uploadfile', [DataRekamMedisController::class, 'importFile'])->name('importFile');
 Route::post('/uploadfile', [DataRekamMedisController::class, 'importFile'])->name('importFile');

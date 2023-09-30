@@ -16,19 +16,19 @@ class PasienImport implements ToModel, WithHeadingRow, WithCalculatedFormulas
     */
     public function model(array $row)
     {
-        $pasien = Pasien::create([
+        // $pasien = Pasien::create([
 
-            'nik' => $row['nik'],
-            'no_rm' => $row['no_rm'],
-            'nama' => $row['nama'],
-            'jenis_kelamin' => $row['jenis_kelamin'],
+        //     'nik' => $row['nik'],
+        //     'no_rm' => $row['no_rm'],
+        //     'nama' => $row['nama'],
+        //     'jenis_kelamin' => $row['jenis_kelamin'],
 
-            // 'nama' => $row['nama'],
-            // 'no_rm' => $row['no_rm'],
-            // 'tgl_daftar' => $row['tgl_daftar'],
-            // 'tgl_pulang' => $row['tgl_pulang'],
-            // 'lama_dirawat' => $row['lama_dirawat'],
-            // 'hari_perawatan' => $row['hari_perawatan'],
-        ]);
+        //     // 'nama' => $row['nama'],
+        //     // 'no_rm' => $row['no_rm'],
+        //     // 'tgl_daftar' => $row['tgl_daftar'],
+        //     // 'tgl_pulang' => $row['tgl_pulang'],
+        //     // 'lama_dirawat' => $row['lama_dirawat'],
+        //     // 'hari_perawatan' => $row['hari_perawatan'],
+        // ]);
     }
 }

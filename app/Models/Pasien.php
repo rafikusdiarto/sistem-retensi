@@ -16,6 +16,8 @@ class Pasien extends Model
         'jenis_kelamin',
         'jenis_pelayanan',
         'dokter',
+        'alamat',
+        'status',
         'mrs',
         'krs',
     ];
