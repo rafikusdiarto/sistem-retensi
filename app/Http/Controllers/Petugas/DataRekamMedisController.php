@@ -92,10 +92,11 @@ class DataRekamMedisController extends Controller
     }
 
     public function update(Request $request, $id){
+        // dd($tgl_retensi);
         $request->validate([
             'nama' => 'required',
             'no_rm' => 'required',
-            'nik' => 'required|max:16|min:16|unique:nik',
+            'nik' => 'required|max:16|min:16',
             'jenis_kelamin' => 'required',
             'jenis_pelayanan' => 'required',
             'dokter' => 'required',
@@ -109,8 +110,11 @@ class DataRekamMedisController extends Controller
             'nik.min' => 'attribute harus 16 digit'
         ]
         );
+
         try {
-            Pasien::find($id)->update([
+            $tgl_retensi = (new Carbon($request->krs))->addYears(5);
+
+            $data_pasien = Pasien::find($id)->update([
                 'no_rm' => $request->no_rm,
                 'nik' => $request->nik,
                 'nama' => $request->nama,
@@ -119,9 +123,10 @@ class DataRekamMedisController extends Controller
                 'dokter' => $request->dokter,
                 'mrs' => $request->mrs,
                 'krs' => $request->krs,
-                'tgl_retensi' => (new Carbon($request->krs))->addYears(5),
+                'tgl_retensi' => $tgl_retensi,
                 'alamat' => $request->alamat,
                 ]);
+            // dd($data_pasien);
             return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil diubah');
 
         } catch(\Throwable $e){

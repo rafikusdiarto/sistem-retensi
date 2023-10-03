@@ -128,6 +128,9 @@
                                             class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
                                             Jenis Kelamin</th>
                                         <th
+                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            Dokter</th>
+                                        <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
                                             MRS</th>
                                         <th
@@ -171,6 +174,9 @@
                                             </td>
                                             <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                                 {{ $item->jenis_kelamin }}
+                                            </td>
+                                            <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                                {{ $item->dokter }}
                                             </td>
                                             <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                                 {{ $item->mrs }}
