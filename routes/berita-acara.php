@@ -10,3 +10,11 @@ Route::get('/berita-acara/edit/{id}', [BeritaAcaraPetugasController::class, 'edi
 Route::put('/berita-acara/update/{id}', [BeritaAcaraPetugasController::class, 'update'])->name('updateBeritaAcara');
 Route::delete('/berita-acara/delete/{id}', [BeritaAcaraPetugasController::class, 'delete'])->name('deleteBeritaAcara');
 Route::get('/berita-acara/download/{file}', [BeritaAcaraPetugasController::class, 'download'])->name('downloadBeritaAcara');
+
+Route::get('/kepala/berita-acara', [App\Http\Controllers\Kepala\BeritaAcaraKepalaController::class, 'index']);
+Route::get('/kepala/berita-acara/create', [App\Http\Controllers\Kepala\BeritaAcaraKepalaController::class, 'create']);
+Route::post('/kepala/berita-acara/store', [App\Http\Controllers\Kepala\BeritaAcaraKepalaController::class, 'store']);
+Route::get('/kepala/berita-acara/edit/{id}', [App\Http\Controllers\Kepala\BeritaAcaraKepalaController::class, 'edit']);
+Route::put('/kepala/berita-acara/update/{id}', [App\Http\Controllers\Kepala\BeritaAcaraKepalaController::class, 'update']);
+Route::delete('/kepala/berita-acara/delete/{id}', [App\Http\Controllers\Kepala\BeritaAcaraKepalaController::class, 'delete']);
+Route::get('/kepala/berita-acara/download/{file}', [App\Http\Controllers\Kepala\BeritaAcaraKepalaController::class, 'download']);

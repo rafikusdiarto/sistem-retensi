@@ -21,8 +21,8 @@
         <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
             <ul class="flex flex-col pl-0 mb-0">
                 <li class="mt-0.5 w-full">
-                    <a
-                        class="py-2.7 bg-menu text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-white transition-colors">
+                    <a href="{{route('dashboardKepala')}}"
+                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors {{ (request()->segment(1) == 'dashboard-kepala') ? 'bg-menu text-white' : '' }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                             <i class="relative top-0 text-sm leading-normal text-blue-500 ni ni-tv-2"></i>
@@ -32,8 +32,8 @@
                 </li>
 
                 <li class="mt-0.5 w-full">
-                    <a
-                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors">
+                    <a href="{{url('/kepala/laporan-retensi')}}"
+                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors {{ (request()->segment(2) == 'laporan-retensi') ? 'bg-menu text-white' : '' }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                             <i class="relative top-0 text-sm leading-normal text-pink-600 ni ni-ruler-pencil"></i>
@@ -42,8 +42,8 @@
                     </a>
                 </li>
                 <li class="mt-0.5 w-full">
-                    <a href=""
-                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors">
+                    <a href="{{url('/kepala/sop-retensi')}}"
+                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors {{ (request()->segment(2) == 'sop-retensi') ? 'bg-menu text-white' : '' }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                             <i class="relative top-0 text-sm leading-normal text-yellow-400 ni ni-badge"></i>
@@ -52,8 +52,8 @@
                     </a>
                 </li>
                 <li class="mt-0.5 w-full">
-                    <a href=""
-                        class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors">
+                    <a href="{{url('/kepala/statistik-retensi')}}"
+                        class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors {{ (request()->segment(2) == 'statistik-retensi') ? 'bg-menu text-white' : '' }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                             <i class="relative top-0 text-sm leading-normal text-red-600 ni ni-chart-bar-32"></i>
@@ -63,8 +63,8 @@
                 </li>
 
                 <li class="mt-0.5 w-full">
-                    <a href=""
-                        class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors">
+                    <a href="{{url('/kepala/berita-acara')}}"
+                        class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 rounded-lg transition-colors {{ (request()->segment(2) == 'berita-acara') ? 'bg-menu text-white' : '' }}">
                         <div
                             class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                             <i class="relative top-0 text-sm leading-normal text-blue-600 ni ni-paper-diploma"></i>
