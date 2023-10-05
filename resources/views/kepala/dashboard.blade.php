@@ -1,13 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border" style="margin-top: 30px">
-        <div class="shadow-xl bg-notif shadow-dark-xl rounded-2xl bg-clip-border" style="margin:20px 20px 20px 20px;">
+    <div class="relative flex flex-col min-w-0 h-[850px] break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border"
+        style="margin-top: 30px">
+        @if (session('success'))
+            <div alert
+                class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-emerald-500 to-teal-400 border-emerald-300">
+                {{ session('success') }}</div>
+        @endif
+        @if (session('error'))
+            <div alert
+                class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-emerald-500 to-teal-400 border-emerald-300">
+                {{ session('error') }}</div>
+        @endif
+        <div class="shadow-xl shadow-dark-xl rounded-2xl bg-clip-border {{ $pasienRetensi > 0 ? 'bg-notif' : 'hidden' }}"
+            style="margin:20px 20px 20px 20px;">
             <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
                     <div class="flex-none w-2/3 max-w-full px-3">
                         <div class="flex items-center">
-                            <h3 class="font-bold text-red-600">100</h3>
+                            <h3 class="font-bold text-red-600">{{ $pasienRetensi }}</h3>
                             <h3 class="text-lg text-white ml-2">
                                 Rekam medis siap diretensi
                             </h3>
@@ -16,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-center" style="padding-bottom: 80px">
+        <div class="text-center mt-[40px]" style="padding-bottom: 80px">
             <div class=" -mx-3 ">
                 <h2 class="mb-2 font-bold text-2xl ">SELAMAT DATANG DI SISTEM RETENSI <br> RUMAH SAKIT
                     TINGKAT III BALADHIKA HUSADA JEMBER</h2>
