@@ -110,7 +110,7 @@
                             <span class="font-bold p-2 px-4 ">TOTAL</span>
                             <span id="total" class="font-bold p-2 px-4">0</span>
                         </div>
-                        <a href="{{ route('downloadLaporanRetensi') }}" class="p-6 pb-0 mb-0 border-b-0 border-b-solid text-right rounded-t-2xl border-b-transparent float-right">
+                        <a href="{{ url('/kepala/laporan-retensi/download') }}" class="p-6 pb-0 mb-0 border-b-0 border-b-solid text-right rounded-t-2xl border-b-transparent float-right">
                             <button type="submit"
                             class="btn-shadow font-semibold uppercase leading-normal text-xs ease-in bg-[#FFC7B6D9] text-black rounded px-10 py-2 mt-2 hover:-translate-y-px hover:shadow-md">
                             Cetak
@@ -154,7 +154,7 @@
                 console.log(jenis_pelayanan, tahun, status);
                 $.ajax({
                     type: 'GET',
-                    url: '/laporan-retensi',
+                    url: '/kepala/laporan-retensi',
                     data: {
                         jenis_pelayanan: jenis_pelayanan,
                         tahun: tahun,

@@ -13,10 +13,6 @@
                             </h3>
                         </div>
                     </div>
-                    <div class="px-3 text-right basis-1/3">
-                        <button type="button"
-                            class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Lihat</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -24,7 +20,7 @@
             <div class=" -mx-3 ">
                 <h2 class="mb-2 font-bold text-2xl ">SELAMAT DATANG DI SISTEM RETENSI <br> RUMAH SAKIT
                     TINGKAT III BALADHIKA HUSADA JEMBER</h2>
-                <div class="bg-blue-500  mx-auto rounded" style="width: 1000px;border-radius:20px">
+                <div class="bg-menu  mx-auto rounded" style="width: 1000px;border-radius:20px">
                     <img class="mx-auto" style="padding: 25px;width:900px;border-radius:40px"
                         src="{{ asset('assets/img/rs dkt.jpg') }}" alt="">
                 </div>

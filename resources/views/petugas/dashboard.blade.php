@@ -35,7 +35,7 @@
             <div class=" -mx-3 ">
                 <h2 class="mb-2 font-bold text-2xl ">SELAMAT DATANG DI SISTEM RETENSI <br> RUMAH SAKIT
                     TINGKAT III BALADHIKA HUSADA JEMBER</h2>
-                <div class="bg-blue-500  mx-auto rounded" style="width: 1000px;border-radius:20px">
+                <div class="bg-menu  mx-auto rounded" style="width: 1000px;border-radius:20px">
                     <img class="mx-auto" style="padding: 25px;width:900px;border-radius:40px"
                         src="{{ asset('assets/img/rs dkt.jpg') }}" alt="">
                 </div>
