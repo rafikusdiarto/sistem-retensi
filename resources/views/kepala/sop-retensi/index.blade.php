@@ -17,7 +17,7 @@
                 <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <h6 class="text-zinc-700 font-bold text-xl">SOP Retensi dan Pemusnahan</h6>
                 </div>
-                <form action="{{route('storeSopRetensi')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{url('/kepala/sop-retensi/store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="flex grid grid-cols-2 gap-4 p-5">
                         <div>
@@ -92,21 +92,21 @@
                                         </td>
                                         <td
                                             class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <a href="{{route('showSopRetensi', $item->id)}}"
+                                            <a href="{{url('/kepala/sop-retensi/show',$item->id)}}"
                                             class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Lihat
                                             <i class="fas fa-eye ms-2"></i>
                                             </a>
                                         </td>
                                         <td
                                             class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <a href="{{route('downloadSopRetensi', $item->filename)}}"
+                                            <a href="{{url('/kepala/sop-retensi/download', $item->filename)}}"
                                             class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Cetak
                                             <i class="fas fa-print ms-2"></i>
                                             </a>
                                         </td>
                                         <td
                                             class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <form action="{{route('deleteSopRetensi', $item->id)}}" method="POST">
+                                            <form action="{{url('/kepala/sop-retensi/delete', $item->id)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"

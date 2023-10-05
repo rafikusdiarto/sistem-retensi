@@ -55,7 +55,7 @@ class SopRetensiController extends Controller
                 'keterangan' => $request->keterangan
             ]);
 
-            return redirect()->route('sopRetensi')->with('success', 'data sop retensi berhasil ditambahkan');
+            return redirect()->back()->with('success', 'data sop retensi berhasil ditambahkan');
             // return view('kepala.sop-retensi.index');
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());
@@ -77,7 +77,7 @@ class SopRetensiController extends Controller
     public function delete($id){
         try {
             SopRetensi::find($id)->delete();
-            return redirect()->route('sopRetensi')->with('success', 'data sop retensi berhasil dihapus');
+            return redirect()->back()->with('success', 'data sop retensi berhasil dihapus');
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){
