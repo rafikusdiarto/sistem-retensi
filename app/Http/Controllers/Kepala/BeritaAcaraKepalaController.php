@@ -125,7 +125,7 @@ class BeritaAcaraKepalaController extends Controller
 
             }
 
-            return redirect()->route('beritaAcara')->with('success', 'Data berhasil ditambahkan');
+            return redirect('/kepala/berita-acara')->with('success', 'Data berhasil ditambahkan');
         } catch (\Throwable $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -226,7 +226,7 @@ class BeritaAcaraKepalaController extends Controller
                 ]);
             }
 
-            return redirect()->route('beritaAcara')->with('success', 'Data berhasil diubah');
+            return redirect('/kepala/berita-acara')->with('success', 'Data berhasil diubah');
         } catch (\Throwable $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -238,7 +238,7 @@ class BeritaAcaraKepalaController extends Controller
     {
         try {
             BeritaAcara::find($id)->delete();
-            return redirect()->route('beritaAcara')->with('success', 'Data berhasil dihapus');
+            return redirect('/kepala/berita-acara')->with('success', 'Data berhasil dihapus');
         } catch (\Throwable $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {

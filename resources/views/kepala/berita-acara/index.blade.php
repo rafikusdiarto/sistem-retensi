@@ -12,7 +12,7 @@
             <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
                 <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <h6 class="text-zinc-700 font-bold text-xl">Berita Acara Pemusnahan</h6>
-                    <a href="{{route('tambahDataBeritaAcara')}}"
+                    <a href="{{url('/kepala/berita-acara/create')}}"
                     class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer header-green leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Tambah
                     <i class="fas fa-plus ms-2"></i>
                     </a>
@@ -57,21 +57,21 @@
                                         </td>
                                         <td
                                             class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <a href="{{route('editBeritaAcara', $item->id)}}"
+                                            <a href="{{url('/kepala/berita-acara/edit', $item->id)}}"
                                             class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer header-green leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
                                             <i class="fas fa-pen ms-2"></i>
                                         </a>
                                         </td>
                                         <td
                                             class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <a href="{{route('downloadBeritaAcara', $item->lampiran)}}"
+                                            <a href="{{url('/kepala/berita-acara/download', $item->lampiran)}}"
                                             class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md" style="background-color: #cd9018;">Cetak
                                             <i class="fas fa-print ms-2"></i>
                                         </a>
                                         </td>
                                         <td
                                             class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <form action="{{route('deleteBeritaAcara', $item->id)}}" method="POST">
+                                            <form action="{{url('/kepala/berita-acara/delete', $item->id)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
