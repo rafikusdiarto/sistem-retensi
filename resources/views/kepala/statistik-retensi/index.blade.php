@@ -15,7 +15,7 @@
             @error('jumlah')
             <div alert class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-rose-500 to-rose-400 border-rose-300">{{$message}}</div>
             @enderror
-            
+
             <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
                 <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <h6 class="text-slate-400 font-bold text-xl">Statitstik Retensi</h6>
@@ -27,7 +27,7 @@
 
                 <div id="modal" class="hidden absolute w-full h-full rounded-2xl" style="background-color:rgba(0, 0, 0, 0.5);">
                     <div class="absolute h-fit max-w-xl w-full top-10 left-1/2 -translate-x-1/2 bg-white border rounded">
-                        <form action="{{ route('storeStatistikRetensi') }}" method="POST" class="p-4 ">
+                        <form action="{{ url('/kepala/statistik-retensi/store') }}" method="POST" class="p-4 ">
                             @csrf
                             <span id="closeModalButton" class="float-right cursor-pointer scale-150">&times;</span>
                         <h4 class="font-bold text-center pt-10">Tambah Data Statistik</h4>
@@ -85,7 +85,7 @@
                                 @foreach ($data as $item)
                                     <div id="modalEdit{{ $item->id }}" class="hidden absolute top-0 left-0 w-full h-full rounded-2xl" style="background-color:rgba(0, 0, 0, 0.5);">
                                         <div class="absolute h-fit max-w-xl w-full top-10 left-1/2 -translate-x-1/2 bg-white border rounded z-10 p-4">
-                                            <form action="{{ route('updateStatistikRetensi', $item->id) }}" method="POST">
+                                            <form action="{{ url('/kepala/statistik-retensi/update', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('put')
                                                 <span onclick="closedModalEdit({{ $item->id }})" class="float-right cursor-pointer scale-150">&times;</span>
@@ -115,16 +115,16 @@
                                         <td
                                             class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400 uppercase">{{$item->jumlah}}
                                         </td>
-                                        <td 
+                                        <td
                                             class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                             <button id="edit{{ $item->id }}" data-target="{{ $item->id }}" onclick="handleEdit({{ $item->id }})"
                                             class="inline-block edit px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg bg-menu leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
                                             <i class="fas fa-pen ms-2"></i>
                                         </button>
                                         </td>
-                                        <td 
+                                        <td
                                             class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                            <form action="{{route('deleteStatistikRetensi', $item->id)}}" method="POST">
+                                            <form action="{{url('/kepala/statistik-retensi/delete', $item->id)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" id="hapus"
@@ -145,10 +145,11 @@
     </div>
 
     <script>
-        const data = <?= json_encode($data); ?>; 
+        const data = <?= json_encode($data); ?>;
         const myChart = document.getElementById('chart')
         const table = document.getElementById('sr-table')
         const closeChartBtn = document.getElementById('closeChartBtn')
+
         function closeChart(){
             chart.destroy()
             myChart.classList.add('hidden')
@@ -156,6 +157,8 @@
             table.classList.remove('hidden')
         }
         let chart
+
+
         function updateChart(convertedData){
             if(chart){
                 chart.destroy()
@@ -193,7 +196,6 @@
             chart = new ApexCharts(document.querySelector("#chart"), options);
             chart.render();
         }
-        
 
         document.getElementById('filterButton').addEventListener('click', function () {
             const startYear = parseInt(document.getElementById('tahun1').value);
