@@ -71,8 +71,10 @@ class DataRetensiController extends Controller
 
     public function update(Request $request, $id){
         try {
-            DB::table('pasiens')
-                ->where('id','=',$id)
+
+            Pasien::findOrFail($id)
+            // DB::table('pasiens')
+            //     ->where('id','=',$id)
                 ->update([
                     'status'=>$request->status
                 ]);

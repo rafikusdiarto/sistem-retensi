@@ -14,7 +14,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 
-
     <link href="{{ asset('DataTables/datatables.css') }}" rel="stylesheet">
 
     <!-- Font Awesome Icons -->
@@ -34,6 +33,30 @@
         .popup-active{
             background-color: rgba(0, 0, 0, 0.5)
         }
+        .hasImage:hover section {
+  background-color: rgba(5, 5, 5, 0.4);
+}
+.hasImage:hover button:hover {
+  background: rgba(5, 5, 5, 0.45);
+}
+
+#overlay p,
+i {
+  opacity: 0;
+}
+
+#overlay.draggedover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+#overlay.draggedover p,
+#overlay.draggedover i {
+  opacity: 1;
+}
+
+.group:hover .group-hover\:text-blue-800 {
+  color: #2b6cb0;
+}
+
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>

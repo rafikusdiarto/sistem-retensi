@@ -227,6 +227,7 @@
         $( "#status" ).change(function() {
             var id =$("#hid").val();
             var status =$("#status").val();
+            console.log(status + id);
             $.ajax({
                 type: "GET",
                 url: "/dataretensi/update-status/"+ id + "/" +status,
