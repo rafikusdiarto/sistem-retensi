@@ -10,7 +10,7 @@
             @if (session('error'))
                 <div alert
                     class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-emerald-500 to-teal-400 border-emerald-300">
-                    {{ session('error') }}`</div>
+                    {{ session('error') }}</div>
             @endif
         <div class="flex-none w-full max-w-full px-3">
             <div class="container relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">

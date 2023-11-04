@@ -17,3 +17,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/public/berita_acara
+/public/berita_acara_lampiran
