@@ -17,7 +17,7 @@
     <link href="{{ asset('DataTables/datatables.css') }}" rel="stylesheet">
 
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/29d4f5ffc9.js" crossorigin="anonymous"></script>
     <!-- Nucleo Icons -->
     <link href="{{ asset('./assets/css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('./assets/css/nucleo-svg.css') }}" rel="stylesheet" />
@@ -30,33 +30,35 @@
     <!-- Main Styling -->
     <link href="{{ asset('./assets/css/argon-dashboard-tailwind.css?v=1.0.1') }}" rel="stylesheet" />
     <style>
-        .popup-active{
-            background-color: rgba(0, 0, 0, 0.5)
+        .popup-active {
+            background-color: rgba(0, 0, 0, 0.5);
         }
+
         .hasImage:hover section {
-  background-color: rgba(5, 5, 5, 0.4);
-}
-.hasImage:hover button:hover {
-  background: rgba(5, 5, 5, 0.45);
-}
+            background-color: rgba(5, 5, 5, 0.4);
+        }
 
-#overlay p,
-i {
-  opacity: 0;
-}
+        .hasImage:hover button:hover {
+            background: rgba(5, 5, 5, 0.45);
+        }
 
-#overlay.draggedover {
-  background-color: rgba(255, 255, 255, 0.7);
-}
-#overlay.draggedover p,
-#overlay.draggedover i {
-  opacity: 1;
-}
+        #overlay
+         {
+            opacity: 0;
+        }
 
-.group:hover .group-hover\:text-blue-800 {
-  color: #2b6cb0;
-}
+        #overlay.draggedover {
+            background-color: rgba(255, 255, 255, 0.7);
+        }
 
+        #overlay.draggedover,
+        #overlay.draggedover  {
+            opacity: 1;
+        }
+
+        .group:hover .group-hover\:text-blue-800 {
+            color: #2b6cb0;
+        }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -74,7 +76,7 @@ i {
         <div class="w-full px-6 py-6 mx-auto">
             @yield('content')
             @include('components.footer')
-    </div>
+        </div>
     </main>
 </body>
 <!-- plugin for charts  -->
@@ -114,24 +116,24 @@ i {
 
     // Close the modal if the user clicks outside of it
     window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        closeModal();
-    }
+        if (event.target === modal) {
+            closeModal();
+        }
     });
 
-    function handleEdit(id){
+    function handleEdit(id) {
         const modalEdit = document.getElementById(`modalEdit${id}`)
         modalEdit.style.display = 'block'
         body.classList.add('popup-active')
     }
 
-    function closedModalEdit(id){
+    function closedModalEdit(id) {
         const modalEdit = document.getElementById(`modalEdit${id}`)
         modalEdit.style.display = 'none'
         body.classList.remove('popup-active')
     }
-
 </script>
 
 @yield('extraJS')
+
 </html>
