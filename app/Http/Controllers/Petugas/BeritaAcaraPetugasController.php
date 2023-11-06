@@ -299,10 +299,10 @@ class BeritaAcaraPetugasController extends Controller
         try {
 
             $lampiran = BeritaAcaraLampiran::find($id);
-            if (file_exists(public_path($lampiran->path_file))) {
-                unlink(public_path($lampiran->path_file));
-                $lampiran->delete();
-            }
+            $lampiran->delete();
+            // if (file_exists(public_path($lampiran->path_file))) {
+            //     unlink(public_path($lampiran->path_file));
+            // }
 
             $data = BeritaAcara::find($lampiran->berita_acara_id);
             $dataLampiran = DB::table('berita_acara_lampirans')->where('berita_acara_id', '=', $data->id)->get();

@@ -18,4 +18,5 @@ Route::post('/kepala/berita-acara/store', [App\Http\Controllers\Kepala\BeritaAca
 Route::get('/kepala/berita-acara/edit/{id}', [App\Http\Controllers\Kepala\BeritaAcaraKepalaController::class, 'edit']);
 Route::put('/kepala/berita-acara/update/{id}', [App\Http\Controllers\Kepala\BeritaAcaraKepalaController::class, 'update']);
 Route::delete('/kepala/berita-acara/delete/{id}', [App\Http\Controllers\Kepala\BeritaAcaraKepalaController::class, 'delete']);
+Route::get('/kepala/lampiran-berita-acara/delete/{id}', [App\Http\Controllers\Kepala\BeritaAcaraKepalaController::class, 'deleteLampiran']);
 Route::get('/kepala/berita-acara/download/{file}', [App\Http\Controllers\Kepala\BeritaAcaraKepalaController::class, 'download']);

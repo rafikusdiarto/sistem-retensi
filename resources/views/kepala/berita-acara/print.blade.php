@@ -49,7 +49,7 @@
         <p style="float: left; height: 1cm">1.</p>
         <p style="margin-left: 1cm">Bahwa dalam rangka pemusanahan dokumen rekam medis Rumah Sakit Tingkat III Baladhika Husada Jember telah dibentuk tim pemusnahan yang mempunyai tugas untuk  melaksanakan pemusnahan rekam medis sebagaimana petunjuk  ddan ketentuan yang berlaku. </p>
         <p style="float: left; height: 1cm">2.</p>
-        <p style="margin-left: 1cm">Bahwa pelaksanaan pemusnahan berdasarkan .............. dan mengacu .............. pada peraturan .............. dan keputusan .............p>
+        <p style="margin-left: 1cm">Bahwa pelaksanaan pemusnahan berdasarkan .............. dan mengacu .............. pada peraturan .............. dan keputusan .............</p>
         <p>Atas dasar tersebut tim pemusnah rekam medis Rumah Sakit Tingkat III Baladhika Husada Jember telah melakukan pemusnahan rekam medis inaktif tahun ...... - ...... </p>
         <p>Nama Petugas<span style="margin-left: 4cm">: {{ $nama_petugas }}</span></p>
         <p style="text-transform: capitalize;">Jabatan <span style="margin-left: 5.2cm">: {{ $jabatan }}</span></p>
