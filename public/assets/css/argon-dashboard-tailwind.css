@@ -24,6 +24,11 @@
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
 
+.bg-yellow-500{
+    background-color: #fbbf24;
+}
+
+
 .logo-dkt{
   width: 56px;
   height: 52px;
