@@ -15,12 +15,12 @@
             @error('jumlah')
             <div alert class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-rose-500 to-rose-400 border-rose-300">{{$message}}</div>
             @enderror
-            
+
             <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
                 <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <h6 class="text-slate-400 font-bold text-xl">Statitstik Retensi</h6>
                     <button id="showModalButton"
-                    class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-menu leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Tambah
+                    class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Tambah
                     <i class="fas fa-plus ms-2"></i>
                     </button>
                 </div>
@@ -115,20 +115,20 @@
                                         <td
                                             class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400 uppercase">{{$item->jumlah}}
                                         </td>
-                                        <td 
+                                        <td
                                             class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                             <button id="edit{{ $item->id }}" data-target="{{ $item->id }}" onclick="handleEdit({{ $item->id }})"
-                                            class="inline-block edit px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg bg-menu leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
+                                            class="inline-block edit px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg bg-yellow-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
                                             <i class="fas fa-pen ms-2"></i>
                                         </button>
                                         </td>
-                                        <td 
+                                        <td
                                             class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                             <form action="{{route('deleteStatistikRetensi', $item->id)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" id="hapus"
-                                                class="inline-block hapus px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md bg-menu" style="background-color: #CD3716;">Hapus
+                                                class="inline-block hapus px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md bg-red-500" >Hapus
                                                 <i class="fas fa-trash ms-2"></i>
                                             </button>
 
@@ -145,7 +145,7 @@
     </div>
 
     <script>
-        const data = <?= json_encode($data); ?>; 
+        const data = <?= json_encode($data); ?>;
         const myChart = document.getElementById('chart')
         const table = document.getElementById('sr-table')
         const closeChartBtn = document.getElementById('closeChartBtn')
@@ -193,7 +193,7 @@
             chart = new ApexCharts(document.querySelector("#chart"), options);
             chart.render();
         }
-        
+
 
         document.getElementById('filterButton').addEventListener('click', function () {
             const startYear = parseInt(document.getElementById('tahun1').value);

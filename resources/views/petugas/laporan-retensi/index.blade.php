@@ -21,25 +21,6 @@
                 <div class="flex-auto px-0 pt-0 pb-2">
                     <div class="p-5 overflow-x-auto">
                         <div class="flex items-center mb-5 space-x-10 w-full">
-                            <div class="items-center flex gap-2">
-                                <label for="countries" class=" text-sm flex font-medium items-center mx-2 text-slate">
-                                    Show
-                                    <select id="countries"
-                                        class="mx-2 rounded-lg text-sm text-gray-900"
-                                        style="padding-left: 1rem;
-                                                padding-right: 3rem;
-                                                padding-top: .5rem;
-                                                padding-bottom: .5rem;
-                                ">
-                                        <option selected>10</option>
-                                        <option>20</option>
-                                        <option>25</option>
-                                        <option>50</option>
-                                    </select>
-                                    Entries
-                                </label>
-                            </div>
-
                             <div class="flex items-center justify-end w-full gap-10">
                                 <div class="flex items-center gap-2">
                                     <label for="jenis_pelayanan" class="block text-sm font-medium text-slate text-slate">Pelayanan</label>
@@ -103,16 +84,17 @@
                                         Status</th>
                                 </tr>
                             </thead>
-                            <tbody> 
+                            <tbody>
                             </tbody>
                         </table>
                         <div class="flex justify-between items-center bg-[#F5F5F5] rounded-lg mt-4">
                             <span class="font-bold p-2 px-4 ">TOTAL</span>
                             <span id="total" class="font-bold p-2 px-4">0</span>
                         </div>
-                        <a href="{{ route('downloadLaporanRetensi') }}" class="p-6 pb-0 mb-0 border-b-0 border-b-solid text-right rounded-t-2xl border-b-transparent float-right">
+                        <a href="{{ route('downloadLaporanRetensi') }}" class="p-6 pb-0 mb-0  border-b-0 border-b-solid text-center rounded-t-2xl border-b-transparent float-right">
                             <button type="submit"
-                            class="btn-shadow font-semibold uppercase leading-normal text-xs ease-in bg-[#FFC7B6D9] text-black rounded px-10 py-2 mt-2 hover:-translate-y-px hover:shadow-md">
+                            class="btn-shadow font-semibold  uppercase leading-normal text-xs ease-in bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:-translate-y-px hover:shadow-md">
+                            <i class="fas fa-print mr-1"></i>
                             Cetak
                             </button>
                         </a>
@@ -144,7 +126,9 @@
                 return data;
             }
             },
-            ]
+            ],
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+
         })
         $(document).ready(function() {
             $('#searchButton').click(function() {
@@ -155,15 +139,15 @@
                 $.ajax({
                     type: 'GET',
                     url: '/laporan-retensi',
-                    data: { 
+                    data: {
                         jenis_pelayanan: jenis_pelayanan,
                         tahun: tahun,
                         status: status
                     },
-                    success: function(data) {   
+                    success: function(data) {
                         table.clear().draw();
                         table.rows.add(data.data_pasien).draw();
-                        
+
                         const totalData = data.data_pasien.length;
                         $('#total').text(totalData);
                     }
