@@ -59,7 +59,7 @@ class DataRetensiController extends Controller
                             ->whereDate('krs', '<=', $end_date)
                             ->where('status', 'inactive')
                             ->get();
-            // dd($pasien)
+            // dd($pasien);
             return view('petugas.data-retensi.list', ['pasien' => $pasien]);
 
         } catch(\Throwable $e){

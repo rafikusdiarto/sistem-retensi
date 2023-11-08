@@ -44,7 +44,7 @@
                                 </label>
                             </div> --}}
 
-                            <div class="items-center" style="margin-bottom: -65px">
+                            <div class="items-center" style="margin-bottom: -20px">
                                 <div class="p-3 ">
                                     <div class="flex items-center">
                                         <span class="mx-2 text-slate">Periode</span>

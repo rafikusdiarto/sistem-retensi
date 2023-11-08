@@ -193,7 +193,6 @@
                                                 class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                                 <a href="{{ route('editDataRekamMedis', $item->id) }}"
                                                     class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-yellow-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
-                                                    <i class="fas fa-pen ms-2"></i>
                                                 </a>
                                             </td>
                                             <td
@@ -201,7 +200,6 @@
 
                                                     <a href="{{route('deleteDataRekamMedis', $item->id)}}"
                                                         class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-red-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Hapus
-                                                        <i class="fas fa-trash ms-2"></i>
                                                     </a>
                                             </td>
                                             <td

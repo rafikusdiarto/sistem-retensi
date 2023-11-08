@@ -11,7 +11,7 @@
             @if (session('error'))
                 <div alert
                     class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-emerald-500 to-teal-400 border-emerald-300">
-                    `{{ session('error') }}`</div>
+                    {{ session('error') }}</div>
             @endif
             <div
             class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
@@ -20,11 +20,11 @@
             </div>
             <div class="flex-auto px-0 pt-0 pb-2">
                 <div class="p-5 overflow-x-auto">
-                    <div class="flex items-center justify-between mb-5">
-                        <div class="items-center">
+                    <div class="flex items-center justify-end mb-5">
+                        {{-- <div class="items-center">
                             <label for="countries" class="block text-sm flex font-medium items-center mx-2 text-slate">
                                 Show
-                                <select id="countries"
+                                <select id="show"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-slate dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     style="padding-left: 1rem;
                                             padding-right: 3rem;
@@ -38,9 +38,9 @@
                                 </select>
                                 Entries
                             </label>
-                        </div>
+                        </div> --}}
 
-                        <div class="items-center ">
+                        <div class="items-center" style="margin-bottom: -20px">
                             <div class="p-3 ">
                                 <div class="flex items-center">
                                     <span class="mx-2 text-slate">Periode</span>
@@ -118,16 +118,19 @@
                                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
                                         NIK</th>
                                     <th
-                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap " style="width: 10em">
                                         Nama</th>
                                     <th
-                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
                                         Jenis Kelamin</th>
                                     <th
-                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap " style="width: 15em">
+                                        Dokter</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap "style="width: 8em">
                                         MRS</th>
                                     <th
-                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap " style="width: 8em">
                                         KRS</th>
                                     <th
                                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
@@ -164,6 +167,9 @@
                                         </td>
                                         <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                             {{ $item->jenis_kelamin }}
+                                        </td>
+                                        <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                            {{ $item->dokter }}
                                         </td>
                                         <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                             {{ $item->mrs }}
@@ -215,12 +221,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
     <script>
-        var table = $('#myTable').DataTable()
-    </script>
-    <script>
+        var table = $('#myTable').DataTable({
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        });
         $('#myInput').on('keyup', function() {
             table.search(this.value).draw();
-        });
+        })
+    </script>
+    <script>
     </script>
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript">
