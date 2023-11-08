@@ -121,20 +121,20 @@
                                         <th
                                             class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
                                             NIK</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            <th
+                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap " style="width: 20em">
                                             Nama</th>
                                         <th
-                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
                                             Jenis Kelamin</th>
                                         <th
-                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap " style="width: 15em">
                                             Dokter</th>
                                         <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap "style="width: 8em">
                                             MRS</th>
                                         <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap " style="width: 8em">
                                             KRS</th>
                                         <th
                                             class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
@@ -154,9 +154,11 @@
                                     <?php $no = 1; ?>
                                     @foreach ($pasien as $item)
                                         <?php
+                                        // $tgl_krs = \Carbon\Carbon::parse($item->krs);
                                         $tgl_krs = \Carbon\Carbon::parse($item->tgl_retensi);
                                         $tgl_retensi = \Carbon\Carbon::parse($item->tgl_retensi);
                                         $tanggalKadaluwarsa = \Carbon\Carbon::now()->subYears(5)->subDays(5);
+                                        // dd($tanggalKadaluwarsa);
                                         ?>
                                         <tr
                                             class="{{ $tgl_retensi <= \Carbon\Carbon::now()->addDays(5) || $tgl_retensi <= \Carbon\Carbon::now() || $tgl_krs <= $tanggalKadaluwarsa ? 'bg-[#FFC7B6]' : '' }}">
@@ -196,14 +198,11 @@
                                             </td>
                                             <td
                                                 class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                {{-- <form method="POST" action="{{ route('deleteDataRekamMedis', $item->id) }}">
-                                                    @csrf
-                                                    @method('DELETE') --}}
+
                                                     <a href="{{route('deleteDataRekamMedis', $item->id)}}"
                                                         class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-red-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Hapus
                                                         <i class="fas fa-trash ms-2"></i>
                                                     </a>
-                                                {{-- </form> --}}
                                             </td>
                                             <td
                                                 class="text-left text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
@@ -235,7 +234,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
     <script>
-        var table = $('#myTable').DataTable()
+        var table = $('#myTable').DataTable({
+            // processing: true,
+            // serverSide: true,
+            // orderable: true,
+            //     searchable: true
+        })
     </script>
     <script>
         $('#myInput').on('keyup', function() {

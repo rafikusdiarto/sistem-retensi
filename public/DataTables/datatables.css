@@ -463,22 +463,27 @@ table.dataTable td {
  * Control feature layout
  */
 .dataTables_wrapper {
-  /* position: relative; */
-  /* clear: both; */
+  position: relative;
+  clear: both;
 }
 .dataTables_wrapper .dataTables_length {
-    /* float: left; */
-    /* margin-bottom: 40px; */
-    display: none;
+    float: left;
+    margin-bottom: 40px;
+    /* display: none; */
 
 
 }
 .dataTables_wrapper .dataTables_length select {
     color: #4a5568;
     padding-left: 1rem;
-    padding-right: 1rem;
+    padding-right: 3rem;
     padding-top: .5rem;
     padding-bottom: .5rem;
+    /* margin-bottom: -60px; */
+    /* padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem; */
     line-height: 1.25;
     border-width: 2px;
     border-radius: 10px;

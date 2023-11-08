@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
 use App\Models\User;
+use DataTables;
 
 class DataRekamMedisController extends Controller
 {
@@ -20,8 +21,58 @@ class DataRekamMedisController extends Controller
 
     public function index(){
         try {
-            $data_pasien = Pasien::where('status', 'active')->get();
-            return view('petugas.data-rm.list', ['pasien' => $data_pasien]);
+            $data_pasien = Pasien::where('status', 'active')->paginate(10);
+            return view('petugas.data-rm.test', ['pasien' => $data_pasien]);
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
+    public function getDataRM(Request $request){
+        try {
+            if ($request->ajax()) {
+                $data_pasien = Pasien::where('status', 'active')->get();
+
+                foreach ($data_pasien as $item) {
+
+                    $tgl_krs = Carbon::parse($item->krs);
+                    // dd($tgl_krs);
+                    $tgl_retensi = Carbon::parse($item->tgl_retensi);
+                    $tanggalKadaluwarsa = Carbon::now()->subYears(5)->subDays(5);
+                    // dd($tanggalKadaluwarsa);
+
+                    if ($tgl_retensi <= Carbon::now()->addDays(5) || $tgl_retensi <= Carbon::now() || $tgl_krs <= $tanggalKadaluwarsa) {
+                        $item->class = 'bg-[#FFC7B6]';
+                    } else {
+                        $item->class = '';
+                    }
+                }
+                return Datatables::of($data_pasien)
+
+                ->addColumn('edit', function($data_pasien){
+                    return ' <a href="/datarekammedis/editdatarekammedis/'. $data_pasien->id .'" class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-yellow-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">
+                    Edit
+                    </a>
+                    ';
+                })
+                ->addColumn('delete', function($data_pasien){
+                    return ' <a href="/deletedatarekammedis/'. $data_pasien->id .'" class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-red-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">
+                    Hapus
+                    </a>';
+                })
+                ->addColumn('checkbox', function($data_pasien){
+                return  '<input type="checkbox" name="checked[]" class="<input id="default-checkbox" type="checkbox" value="'. $data_pasien->id .'" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 border-rounded-full rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/> ';
+                })
+                ->rawColumns(['edit', 'delete', 'checkbox'])
+                ->addIndexColumn()
+                ->make(true);
+
+
+                return response()->json($data_pasien);
+            }
+
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){
