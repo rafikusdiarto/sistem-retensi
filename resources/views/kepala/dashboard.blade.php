@@ -28,12 +28,12 @@
                 </div>
             </div>
         </div>
-        <div class="text-center mt-[40px]" style="padding-bottom: 80px">
-            <div class=" -mx-3 ">
+        <div class="text-center my-[50px] " style="padding-bottom: 80px">
+            <div class="">
                 <h2 class="mb-2 font-bold text-2xl ">SELAMAT DATANG DI SISTEM RETENSI <br> RUMAH SAKIT
                     TINGKAT III BALADHIKA HUSADA JEMBER</h2>
-                <div class="bg-menu  mx-auto rounded" style="width: 1000px;border-radius:20px">
-                    <img class="mx-auto" style="padding: 25px;width:900px;border-radius:40px"
+                <div class="cover rounded-2xl ">
+                    <img class="mx-auto max-w-full h-auto"
                         src="{{ asset('assets/img/rs dkt.jpg') }}" alt="">
                 </div>
             </div>

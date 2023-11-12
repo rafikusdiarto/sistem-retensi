@@ -28,6 +28,21 @@
     background-color: #fbbf24;
 }
 
+.cover{
+    max-width: 64rem;
+    background-color: #72B854;
+    margin-left: auto;
+margin-right: auto;
+
+}
+
+.cover img{
+    padding: 50px;
+}
+
+@media (max-width: 640px) { .cover img {
+    padding: 20px;
+} }
 
 .logo-dkt{
   width: 56px;
