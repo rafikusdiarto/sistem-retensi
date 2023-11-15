@@ -20,7 +20,7 @@
                 <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <h6 class="text-slate-400 font-bold text-xl">Statitstik Retensi</h6>
                     <button id="showModalButton"
-                    class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-menu leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Tambah
+                    class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Tambah
                     <i class="fas fa-plus ms-2"></i>
                     </button>
                 </div>
@@ -118,7 +118,7 @@
                                         <td
                                             class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                             <button id="edit{{ $item->id }}" data-target="{{ $item->id }}" onclick="handleEdit({{ $item->id }})"
-                                            class="inline-block edit px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg bg-menu leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
+                                            class="inline-block edit px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg bg-yellow-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
                                             <i class="fas fa-pen ms-2"></i>
                                         </button>
                                         </td>
@@ -128,7 +128,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" id="hapus"
-                                                class="inline-block hapus px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md bg-menu" style="background-color: #CD3716;">Hapus
+                                                class="inline-block hapus px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md bg-red-500">Hapus
                                                 <i class="fas fa-trash ms-2"></i>
                                             </button>
 

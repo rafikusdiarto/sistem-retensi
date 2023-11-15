@@ -13,7 +13,7 @@
                 <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <h6 class="text-zinc-700 font-bold text-xl">Berita Acara Pemusnahan</h6>
                     <a href="{{route('tambahDataBeritaAcara')}}"
-                    class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer header-green leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Tambah
+                    class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Tambah
                     <i class="fas fa-plus ms-2"></i>
                     </a>
                 </div>
@@ -58,14 +58,14 @@
                                         <td
                                             class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                             <a href="{{route('editBeritaAcara', $item->id)}}"
-                                            class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer header-green leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
+                                            class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-yellow-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
                                             <i class="fas fa-pen ms-2"></i>
                                         </a>
                                         </td>
                                         <td
                                             class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                             <a href="{{route('downloadBeritaAcara', $item->lampiran)}}"
-                                            class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md" style="background-color: #cd9018;">Cetak
+                                            class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md bg-blue-500">Cetak
                                             <i class="fas fa-print ms-2"></i>
                                         </a>
                                         </td>
@@ -75,7 +75,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer header-green leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md" style="background-color: #CD3716;">Hapus
+                                                class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md bg-red-500">Hapus
                                                 <i class="fas fa-trash ms-2"></i>
                                             </button>
 

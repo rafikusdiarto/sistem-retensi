@@ -21,24 +21,6 @@
                 <div class="flex-auto px-0 pt-0 pb-2">
                     <div class="p-5 overflow-x-auto">
                         <div class="flex items-center mb-5 space-x-10 w-full">
-                            <div class="items-center flex gap-2">
-                                <label for="countries" class=" text-sm flex font-medium items-center mx-2 text-slate">
-                                    Show
-                                    <select id="countries"
-                                        class="mx-2 rounded-lg text-sm text-gray-900"
-                                        style="padding-left: 1rem;
-                                                padding-right: 3rem;
-                                                padding-top: .5rem;
-                                                padding-bottom: .5rem;
-                                ">
-                                        <option selected>10</option>
-                                        <option>20</option>
-                                        <option>25</option>
-                                        <option>50</option>
-                                    </select>
-                                    Entries
-                                </label>
-                            </div>
 
                             <div class="flex items-center justify-end w-full gap-10">
                                 <div class="flex items-center gap-2">
@@ -112,7 +94,8 @@
                         </div>
                         <a href="{{ url('/kepala/laporan-retensi/download') }}" class="p-6 pb-0 mb-0 border-b-0 border-b-solid text-right rounded-t-2xl border-b-transparent float-right">
                             <button type="submit"
-                            class="btn-shadow font-semibold uppercase leading-normal text-xs ease-in bg-[#FFC7B6D9] text-black rounded px-10 py-2 mt-2 hover:-translate-y-px hover:shadow-md">
+                            class="btn-shadow font-semibold  uppercase leading-normal text-xs ease-in bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:-translate-y-px hover:shadow-md">
+                            <i class="fas fa-print mr-1"></i>
                             Cetak
                             </button>
                         </a>
