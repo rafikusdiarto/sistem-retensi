@@ -19,3 +19,6 @@ yarn-error.log
 /.vscode
 /public/berita_acara
 /public/berita_acara_lampiran
+/public/data_excel
+/public/sop_retensi
+

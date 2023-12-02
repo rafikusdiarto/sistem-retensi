@@ -152,7 +152,7 @@
                                     $tanggalKadaluwarsa = \Carbon\Carbon::now()->subYears(5)->subDays(5);
                                     ?>
                                     <tr
-                                        class="{{ $tgl_retensi <= \Carbon\Carbon::now()->addDays(5) || \Carbon\Carbon::now() > $tgl_retensi || $tgl_krs <= $tanggalKadaluwarsa ? 'bg-[#FFC7B6]' : '' }}">
+                                        class="{{ $tgl_retensi <= \Carbon\Carbon::now()->addDays(5) || \Carbon\Carbon::now() > $tgl_retensi || $tgl_krs <= $tanggalKadaluwarsa || $item->status == 'inactive' ? 'bg-[#FFC7B6]' : '' }}">
                                         <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
                                             {{ $no++ }}
                                         </td>

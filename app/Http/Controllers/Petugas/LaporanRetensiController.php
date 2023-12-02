@@ -17,7 +17,7 @@ class LaporanRetensiController extends Controller
     public function index(Request $request)
     {
         $data_pasien = Pasien::where('jenis_pelayanan', $request->jenis_pelayanan)
-            ->whereYear('tgl_retensi', $request->tahun)
+            ->whereYear('krs', $request->tahun)
             ->where('status', $request->status)->get();
         if ($request->has('tahun')) {
             $data_pasien = $data_pasien->map(function ($item, $index) {
