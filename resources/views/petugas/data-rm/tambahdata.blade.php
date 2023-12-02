@@ -13,8 +13,7 @@
                     class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-emerald-500 to-teal-400 border-emerald-300">
                     {{ session('error') }}`</div>
             @endif
-            <div
-                class="container relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border h-[800px]">
+            <div class="relative h-[800px] p-4 flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
                 <div class="p-6 flex justify-between pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <h6 class="text-zinc-700 font-bold text-xl">Tambah Data Rekam Medis</h6>
                     <a href="{{ route('dataRekamMedis') }}"

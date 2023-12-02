@@ -28,14 +28,12 @@
                 </div>
             </div>
         </div>
-        <div class="text-center my-[50px] " style="padding-bottom: 80px">
-            <div class="">
-                <h2 class="mb-2 font-bold text-2xl ">SELAMAT DATANG DI SISTEM RETENSI <br> RUMAH SAKIT
-                    TINGKAT III BALADHIKA HUSADA JEMBER</h2>
-                <div class="cover rounded-2xl ">
-                    <img class="mx-auto max-w-full h-auto"
-                        src="{{ asset('assets/img/rs dkt.jpg') }}" alt="">
-                </div>
+        <div class="text-center {{$pasienRetensi = 0 ? '' : 'mt-8'}}">
+            <h2 class="mb-2 font-bold text-2xl ">SELAMAT DATANG DI SISTEM RETENSI <br> RUMAH SAKIT
+                TINGKAT III BALADHIKA HUSADA JEMBER</h2>
+            <div class="cover rounded-2xl ">
+                <img class="mx-auto max-w-full h-auto"
+                    src="{{ asset('assets/img/rs dkt.jpg') }}" alt="">
             </div>
         </div>
     </div>
