@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Petugas;
 
+use DataTables;
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Pasien;
+use App\Models\FileUpload;
 use Illuminate\Http\Request;
 use App\Imports\PasienImport;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
-use App\Models\User;
-use DataTables;
 
 class DataRekamMedisController extends Controller
 {
@@ -205,8 +206,15 @@ class DataRekamMedisController extends Controller
 
         try {
             $file = $request->file('file');
-            $nama_file = rand().$file->getClientOriginalName();
+            $nama_file = $file->getClientOriginalName();
+            $path_file = 'data_excel/' . $nama_file;
             $file->move('data_excel',$nama_file);
+
+            FileUpload::create([
+                'path_file' => $path_file,
+                'nama_file' => $nama_file,
+                'tgl_upload' => $request->tgl_upload,
+            ]);
 
             $data_pasien = Excel::toArray(new PasienImport, public_path('/data_excel/'.$nama_file));
             $data_pasien = $data_pasien[0];
