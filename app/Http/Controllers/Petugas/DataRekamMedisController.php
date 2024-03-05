@@ -22,7 +22,7 @@ class DataRekamMedisController extends Controller
 
     public function index(){
         try {
-            $data_pasien = Pasien::where('status', 'active')->paginate(10);
+            $data_pasien = Pasien::where('status', 'active');
             return view('petugas.data-rm.test', ['pasien' => $data_pasien]);
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());
@@ -199,10 +199,72 @@ class DataRekamMedisController extends Controller
         }
     }
 
+    // public function importFile(Request $request){
+    //     $this->validate($request, [
+	// 		'file' => 'required|mimes:csv,xls,xlsx'
+	// 	]);
+
+    //     try {
+    //         $file = $request->file('file');
+    //         $nama_file = $file->getClientOriginalName();
+    //         $path_file = 'data_excel/' . $nama_file;
+    //         $file->move('data_excel',$nama_file);
+
+    //         FileUpload::create([
+    //             'path_file' => $path_file,
+    //             'nama_file' => $nama_file,
+    //             'tgl_upload' => $request->tgl_upload,
+    //         ]);
+
+    //         $data_pasien = Excel::toArray(new PasienImport, public_path('/data_excel/'.$nama_file));
+    //         $data_pasien = $data_pasien[0];
+    //         $insert_dataPasien = [];
+    //         // (new Carbon($request->krs))->addYears(5)
+    //         foreach ($data_pasien as $row) {
+    //             $x = intval($row['tgl_daftar']);
+    //             $y = intval($row['tgl_pulang']);
+    //             $insert_dataPasien[] = [
+    //                 'no_rm' => $row['no_rm'],
+    //                 'nik' => $row['nik'],
+    //                 'nama' => $row['nama'],
+    //                 'jenis_kelamin' => $row['jenis_kelamin'],
+    //                 'jenis_pelayanan' => $row['jenis_perawatan'],
+    //                 'dokter' => $row['nama_dokter'],
+    //                 'alamat' => $row['kota'],
+    //                 'mrs' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($x),
+    //                 'krs' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($y),
+    //                 'tgl_retensi' => (new Carbon(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($y)))->addYears(5),
+    //                 'status' => 'active',
+    //                 // 'lama_dirawat' => $row['lama_dirawat'],
+    //                 // 'hari_perawatan' => $row['hari_perawatan'],
+    //                 ];
+    //         }
+
+    //         // dd($data_pasien);
+
+    //         if (!empty($insert_dataPasien)) {
+    //             foreach (array_chunk($insert_dataPasien,1000) as $t) {
+
+    //                 DB::table('pasiens')->insert($t);
+
+
+    //              }
+
+    //         }
+    //         // dd($data_pasien);
+    //         return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil diimport');
+
+    //     } catch(\Throwable $e){
+    //         return redirect()->back()->withError($e->getMessage());
+    //     } catch(\Illuminate\Database\QueryException $e){
+    //         return redirect()->back()->withError($e->getMessage());
+    //     }
+    // }
+
     public function importFile(Request $request){
         $this->validate($request, [
-			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
 
         try {
             $file = $request->file('file');
@@ -219,10 +281,20 @@ class DataRekamMedisController extends Controller
             $data_pasien = Excel::toArray(new PasienImport, public_path('/data_excel/'.$nama_file));
             $data_pasien = $data_pasien[0];
             $insert_dataPasien = [];
-            // (new Carbon($request->krs))->addYears(5)
+
+            // dd($data_pasien);
+
             foreach ($data_pasien as $row) {
+                // dd($row['NY. SEFTIYANI GUMARSIH']);
+                // if ($row['nama'] === 'TN. RYAN YULIANTO') {
+                //     dd($row['tgl_daftar']); // Debug hanya ketika nama cocok
+                // }
                 $x = intval($row['tgl_daftar']);
                 $y = intval($row['tgl_pulang']);
+                // Ubah kolom tanggal menjadi format yang diinginkan
+                $tgl_daftar = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($x)->format('Y-m-d');
+                $tgl_pulang = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($y)->format('Y-m-d');
+
                 $insert_dataPasien[] = [
                     'no_rm' => $row['no_rm'],
                     'nik' => $row['nik'],
@@ -231,28 +303,20 @@ class DataRekamMedisController extends Controller
                     'jenis_pelayanan' => $row['jenis_perawatan'],
                     'dokter' => $row['nama_dokter'],
                     'alamat' => $row['kota'],
-                    'mrs' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($x),
-                    'krs' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($y),
-                    'tgl_retensi' => (new Carbon(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($y)))->addYears(5),
+                    'mrs' => $tgl_daftar,
+                    'krs' => $tgl_pulang,
+                    'tgl_retensi' => (new Carbon($tgl_pulang))->addYears(5)->format('Y-m-d'),
                     'status' => 'active',
-                    // 'lama_dirawat' => $row['lama_dirawat'],
-                    // 'hari_perawatan' => $row['hari_perawatan'],
-                    ];
+                ];
             }
-
-            // dd($data_pasien);
 
             if (!empty($insert_dataPasien)) {
                 foreach (array_chunk($insert_dataPasien,1000) as $t) {
-
                     DB::table('pasiens')->insert($t);
-
-
-                 }
-
+                }
             }
-            // dd($data_pasien);
-            return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil diimport');
+
+            return redirect()->route('dataRekamMedis')->with('success', 'Data pasien berhasil diimpor');
 
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());
@@ -260,6 +324,7 @@ class DataRekamMedisController extends Controller
             return redirect()->back()->withError($e->getMessage());
         }
     }
+
 
     public function changeStatus(Request $request){
         try {
