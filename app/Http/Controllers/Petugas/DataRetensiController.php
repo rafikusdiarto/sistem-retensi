@@ -36,12 +36,18 @@ class DataRetensiController extends Controller
 
             $selectedItems = $request->input('checked');
             $data_pasien = Pasien::where('status', '=', 'inactive')->get();
-            $filteredData = $data_pasien->reject(function ($item) use ($selectedItems) {
-                return in_array($item->id, $selectedItems);
-            });
 
-            // $data_pasien = Pasien::where('status', '=', 'inactive')->get();
-            $pdf = PDF::loadview('petugas.data-retensi.print', ['pasien' => $filteredData])->setPaper('legal');
+            // dd($selectedItems);
+            // dd($data_pasien);
+            if ($selectedItems == 0) {
+                $pdf = PDF::loadview('petugas.data-retensi.print', ['pasien' => $data_pasien])->setPaper('legal');
+            } else {
+                $filteredData = $data_pasien->reject(function ($item) use ($selectedItems) {
+                    return in_array($item->id, $selectedItems);
+                });
+                $pdf = PDF::loadview('petugas.data-retensi.print', ['pasien' => $filteredData])->setPaper('legal');
+            }
+
             return $pdf->stream('data-retensi', array("Attachment" => false));
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());
