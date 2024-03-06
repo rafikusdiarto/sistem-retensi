@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('no_rm');
             $table->string('filename');
-            $table->string('path_arsip');
+            $table->string('path_arsip')->nullable();
             $table->timestamps();
         });
     }

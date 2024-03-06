@@ -10,3 +10,4 @@ Route::put('/arsip-rm/update/{id}',[ArsipRekamMedisController::class,'update'])-
 Route::post('/arsip-rm/store', [ArsipRekamMedisController::class, 'store'])->name('storeArsip');
 Route::get('/arsip-rm/download/{file}', [ArsipRekamMedisController::class, 'download'])->name('downloadArsip');
 Route::delete('/arsip-rm/delete/{id}', [ArsipRekamMedisController::class, 'delete'])->name('deleteArsip');
+Route::get('/lampiran/arsip-rm/delete/{id}', [ArsipRekamMedisController::class, 'deleteFileArsip'])->name('deleteLampiranArsip');

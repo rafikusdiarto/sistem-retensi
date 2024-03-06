@@ -83,18 +83,25 @@ class ArsipRekamMedisController extends Controller
             'required' => ':attribute wajib diisi',
         ]);
         try {
+            $arsip = Arsip::findOrFail($id);
             if($request->hasFile('lampiran') && $request->file('lampiran')->isValid()){
+                if (file_exists(( $arsip->path_arsip))) {
+                    unlink(( $arsip->path_arsip));
+                }
                 $file = $request->file('lampiran');
                 $fileName = $file->getClientOriginalName();
                 $filePath = 'arsip_rm/' . $fileName;
                 $file->move('arsip_rm', $fileName);
-
-                Arsip::find($id)->update([
-                    'path_arsip' => $filePath,
-                    'filename' => $fileName,
-                    'no_rm' => $request->no_rm
-                ]);
+            } else {
+                $filePath = $arsip->path_arsip;
+                $fileName = $arsip->filename;
             }
+
+            $arsip->update([
+                'path_arsip' => $filePath,
+                'filename' => $fileName,
+                'no_rm' => $request->no_rm
+            ]);
 
             return redirect()->route('arsipRekamMedis')->with('success', 'data rekam medis simpan berhasil diubah');
             // return view('petugas.sop-retensi.index');
@@ -107,7 +114,11 @@ class ArsipRekamMedisController extends Controller
 
     public function delete($id){
         try {
-            Arsip::find($id)->delete();
+            $arsip = Arsip::find($id);
+            if (file_exists(( $arsip->path_arsip))) {
+                unlink(( $arsip->path_arsip));
+            }
+            $arsip->delete();
             return redirect()->route('arsipRekamMedis')->with('success', 'data rekam medis simpan berhasil dihapus');
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());
@@ -120,6 +131,26 @@ class ArsipRekamMedisController extends Controller
     public function download(Request $request, $file){
         try {
             return response()->download(public_path('/sop_retensi/'.$file));
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
+    public function deleteFileArsip(Request $request, $id){
+        try {
+            $arsip = Arsip::find($id);
+            if (file_exists(( $arsip->path_arsip))) {
+                unlink(( $arsip->path_arsip));
+            }
+
+            $arsip->update([
+                'path_arsip'=> null,
+            ]);
+
+            return redirect()->back()->with('success', 'arsip rekam medis berhasil dihapus');
+
         } catch(\Throwable $e){
             return redirect()->back()->withError($e->getMessage());
         } catch(\Illuminate\Database\QueryException $e){
