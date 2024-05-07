@@ -204,10 +204,18 @@
                             </table>
                             <div
                                 class="p-6 pb-0 mb-0 border-b-0 border-b-solid text-right rounded-t-2xl border-b-transparent">
-                                <button type="submit"
-                                    class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Cetak
-                                    <i class="fas fa-print ms-2"></i>
+                                @if (count($pasien) == 0)
+                                <button disabled
+                                class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-red-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Data Tidak Ada
+                                <i class="fas fa-print ms-2"></i>
                                 </button>
+                                @else
+                                    <button type="submit"
+                                        class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-blue-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Cetak
+                                        <i class="fas fa-print ms-2"></i>
+                                    </button>
+
+                                @endif
                             </div>
                         </form>
                     </div>

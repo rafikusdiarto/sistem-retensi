@@ -33,19 +33,22 @@ class DataRetensiController extends Controller
 
     public function print(Request $request){
         try {
-
+            // if ($request->has('NIK')) {
+            //     # code...
+            // }
             $selectedItems = $request->input('checked');
             $data_pasien = Pasien::where('status', '=', 'inactive')->get();
+            $count = Pasien::where('status', '=', 'inactive')->count();
 
             // dd($selectedItems);
             // dd($data_pasien);
             if ($selectedItems == 0) {
-                $pdf = PDF::loadview('petugas.data-retensi.print', ['pasien' => $data_pasien])->setPaper('legal');
+                $pdf = PDF::loadview('petugas.data-retensi.print', ['pasien' => $data_pasien, 'count' => $count])->setPaper('legal');
             } else {
                 $filteredData = $data_pasien->reject(function ($item) use ($selectedItems) {
                     return in_array($item->id, $selectedItems);
                 });
-                $pdf = PDF::loadview('petugas.data-retensi.print', ['pasien' => $filteredData])->setPaper('legal');
+                $pdf = PDF::loadview('petugas.data-retensi.print', ['pasien' => $filteredData, 'count' => $count])->setPaper('legal');
             }
 
             return $pdf->stream('data-retensi', array("Attachment" => false));
