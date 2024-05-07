@@ -1,6 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        .status-active {
+            background-color: #53d584; /* Warna latar belakang untuk status active */
+            color: white;
+            padding: 10px; /* Warna teks untuk status active */
+            border-radius: 20px;
+            text-align: center; /* Warna teks untuk status active */
+        }
+        .status-inactive {
+            background-color: #ff6574; /* Warna latar belakang untuk status inactive */
+            color: white; /* Warna teks untuk status inactive */
+            padding: 10px;
+            border-radius: 20px; /* Warna teks untuk status active */
+            text-align: center; /* Warna teks untuk status active */
+        }
+    </style>
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             @if (session('success'))
@@ -11,7 +27,7 @@
             @if (session('error'))
                 <div alert
                     class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-emerald-500 to-teal-400 border-emerald-300">
-                    `{{ session('error') }}`</div>
+                    {{ session('error') }}</div>
             @endif
             <div
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
@@ -91,8 +107,8 @@
                             <span class="font-bold p-2 px-4 ">TOTAL</span>
                             <span id="total" class="font-bold p-2 px-4">0</span>
                         </div>
-                        <a href="{{ route('downloadLaporanRetensi') }}" class="p-6 pb-0 mb-0  border-b-0 border-b-solid text-center rounded-t-2xl border-b-transparent float-right">
-                            <button type="submit"
+                        <a  class="p-6 pb-0 mb-0  border-b-0 border-b-solid text-center rounded-t-2xl border-b-transparent float-right">
+                            <button type="submit" id="printButton"
                             class="btn-shadow font-semibold  uppercase leading-normal text-xs ease-in bg-blue-500 text-white rounded px-10 py-2 mt-2 hover:-translate-y-px hover:shadow-md">
                             <i class="fas fa-print mr-1"></i>
                             Cetak
@@ -121,7 +137,9 @@
                 render: function(data, type, row) {
                 // Mengubah nilai menjadi huruf kapital
                 if (type === 'display') {
-                    return data.charAt(0).toUpperCase() + data.slice(1).toLowerCase();
+                    // Tambahkan kelas berdasarkan nilai status
+                    let statusClass = data === 'active' ? 'status-active' : 'status-inactive';
+                    return `<div class="${statusClass}">${data.charAt(0).toUpperCase() + data.slice(1).toLowerCase()}</div>`;
                 }
                 return data;
             }
@@ -154,5 +172,23 @@
                 });
             });
         });
+        $('#printButton').click(function() {
+        // Periksa apakah pencarian telah dilakukan sebelumnya
+        const totalData = $('#total').text();
+        console.log(totalData);
+        if (totalData === '0') {
+            // alert('data tidak ada');
+            Swal.fire({
+            title: "Warning",
+            text: "Data tidak ada",
+            icon: "info",
+            });
+        } else {
+            const tahun = document.getElementById('tahun').value;
+            // console.log(tahun);
+            window.location.href = "/laporan-retensi/download/" + tahun    ;
+        }
+
+    });
     </script>
 @endsection
