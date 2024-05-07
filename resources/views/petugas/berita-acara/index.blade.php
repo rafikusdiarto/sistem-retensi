@@ -57,6 +57,7 @@
                                         </td>
                                         <td
                                             class="text-center px-6 py-3 text-xs font-semibold text-slate text-slate-400">
+                                            {{-- <a href="{{url('/berita-acara/show', $item->id)}}" --}}
                                             <a href="{{route('editBeritaAcara', $item->id)}}"
                                             class="inline-block px-6 py-3 mr-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-yellow-500 leading-normal text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px hover:shadow-md">Edit
                                             <i class="fas fa-pen ms-2"></i>

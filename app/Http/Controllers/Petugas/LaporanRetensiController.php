@@ -48,11 +48,11 @@ class LaporanRetensiController extends Controller
                         // dd($tahun);
                         $total = count($data_pasien);
                         $pdf = PDF::loadview('petugas.laporan-retensi.print-active', ['pasien' => $data_pasien, 'total' => $total, 'tahun' => $tahun])->setPaper('legal');
-                        return $pdf->stream('data-retensi', array("Attachment" => false));
+                        return $pdf->stream('laporan-rm-aktif', array("Attachment" => false));
                     } elseif ($pasien['status'] == 'inactive') {
                         $total = count($data_pasien);
                         $pdf = PDF::loadview('petugas.laporan-retensi.print-inactive', ['pasien' => $data_pasien, 'total' => $total, 'tahun' => $tahun])->setPaper('legal');
-                        return $pdf->stream('data-retensi', array("Attachment" => false));
+                        return $pdf->stream('data-laporan-retensi', array("Attachment" => false));
                     }
                 }
             } else {

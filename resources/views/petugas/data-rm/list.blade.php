@@ -217,7 +217,7 @@
                             <div
                                 class="p-6 pb-0 mb-0 border-b-0 border-b-solid text-right rounded-t-2xl border-b-transparent">
                                 <button type="submit"
-                                    class="btn-shadow font-bold uppercase text-xs ease-in bg-red-400 text-white rounded px-10 py-2 mt-2 hover:-translate-y-px hover:shadow-md">Arsipkan
+                                    class="btn-shadow font-bold uppercase text-xs ease-in bg-red-400 text-white rounded px-10 py-2 mt-2 hover:-translate-y-px hover:shadow-md">Retensi
                                     Pilihan
                                 </button>
                             </div>

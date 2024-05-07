@@ -4,6 +4,7 @@ use App\Http\Controllers\Petugas\BeritaAcaraPetugasController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/berita-acara', [BeritaAcaraPetugasController::class, 'index'])->name('beritaAcara');
+// Route::get('/berita-acara/show/{id}', [BeritaAcaraPetugasController::class, 'show']);
 Route::get('/berita-acara/create', [BeritaAcaraPetugasController::class, 'create'])->name('tambahDataBeritaAcara');
 Route::post('/berita-acara/store', [BeritaAcaraPetugasController::class, 'store'])->name('storeBeritaAcara');
 Route::get('/berita-acara/edit/{id}', [BeritaAcaraPetugasController::class, 'edit'])->name('editBeritaAcara');

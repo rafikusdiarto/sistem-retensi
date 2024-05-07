@@ -3,18 +3,18 @@
 @section('content')
     <style>
         .status-active {
-            background-color: #53d584; /* Warna latar belakang untuk status active */
+            background-color: #53d584;
             color: white;
-            padding: 10px; /* Warna teks untuk status active */
+            padding: 10px;
             border-radius: 20px;
-            text-align: center; /* Warna teks untuk status active */
+            text-align: center;
         }
         .status-inactive {
-            background-color: #ff6574; /* Warna latar belakang untuk status inactive */
-            color: white; /* Warna teks untuk status inactive */
+            background-color: #ff6574;
+            color: white;
             padding: 10px;
-            border-radius: 20px; /* Warna teks untuk status active */
-            text-align: center; /* Warna teks untuk status active */
+            border-radius: 20px;
+            text-align: center;
         }
     </style>
     <div class="flex flex-wrap -mx-3">

@@ -384,4 +384,56 @@ class BeritaAcaraPetugasController extends Controller
             return redirect()->back()->withError($e->getMessage());
         }
     }
+
+    // public function show($id)
+    // {
+    //     try {
+    //         $beritaAcara = BeritaAcara::findOrFail($id);
+    //         $pdf_merge = PDFMerger::init();
+    //             $tanggal = $beritaAcara->tanggal_pemusnahan;
+    //             $carbonTanggal = Carbon::parse($tanggal);
+    //             $formatTanggal = $carbonTanggal->format('d, F, Y');
+    //             $now = Carbon::now();
+    //             $now_format = $now->format('d, F, Y');
+    //             $namaBulanIndonesia = [
+    //                 'January' => 'Januari',
+    //                 'February' => 'Februari',
+    //                 'March' => 'Maret',
+    //                 'April' => 'April',
+    //                 'May' => 'Mei',
+    //                 'June' => 'Juni',
+    //                 'July' => 'Juli',
+    //                 'August' => 'Agustus',
+    //                 'September' => 'September',
+    //                 'October' => 'Oktober',
+    //                 'November' => 'November',
+    //                 'December' => 'Desember',
+    //             ];
+
+    //             foreach ($namaBulanIndonesia as $bulanInggris => $bulanIndonesia) {
+    //                 $now_format = str_replace($bulanInggris, $bulanIndonesia, $now_format);
+    //             }
+    //             foreach ($namaBulanIndonesia as $bulanInggris => $bulanIndonesia) {
+    //                 $formatTanggal = str_replace($bulanInggris, $bulanIndonesia, $formatTanggal);
+    //             }
+    //         $dom_pdf = PDF::loadview('petugas.berita-acara.print', [
+    //             'tahun' => $now->year,
+    //             'formatTanggal' => $now_format,
+    //             'nama_petugas' => $beritaAcara->name,
+    //             'jabatan' => $beritaAcara->jabatan,
+    //             'cara_pemusnahan' => $beritaAcara->cara_pemusnahan,
+    //             'tanggal_pemusnahan' => $formatTanggal,
+    //             'waktu_pemusnahan' => $beritaAcara->waktu_pemusnahan,
+    //             'lokasi_pemusnahan' => $beritaAcara->lokasi_pemusnahan,
+    //             'ketua_rm' => $beritaAcara->ketua_rm,
+    //             'lampiran' => 'Berita Acara Pemusnahan ' . $formatTanggal . '.pdf'
+    //         ])->setPaper('legal');
+    //         return $dom_pdf->stream('data-retensi', array("Attachment" => false));
+
+    //     } catch (\Throwable $e) {
+    //         return redirect()->back()->withError($e->getMessage());
+    //     } catch (\Illuminate\Database\QueryException $e) {
+    //         return redirect()->back()->withError($e->getMessage());
+    //     }
+    // }
 }
