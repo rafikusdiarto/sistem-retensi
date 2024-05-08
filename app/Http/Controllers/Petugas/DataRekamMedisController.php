@@ -358,4 +358,37 @@ class DataRekamMedisController extends Controller
             return redirect()->back()->withError($e->getMessage());
         }
     }
+
+    public function dataHangus()
+    {
+        try {
+            $dataPasien = Pasien::where('status', 'hangus')->get();
+            return view('petugas.data-retensi.list-hangus', [
+                'pasien' => $dataPasien
+            ]);
+        }  catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
+
+    public function searchDataHangus(Request $request){
+        try {
+            $start_date = $request->start_date;
+            $end_date = $request->end_date;
+
+            $pasien = Pasien::whereDate('krs', '>=', $start_date)
+                            ->whereDate('krs', '<=', $end_date)
+                            ->where('status', 'hangus')
+                            ->get();
+            // dd($pasien)
+            return view('petugas.data-retensi.list-hangus', ['pasien' => $pasien]);
+
+        } catch(\Throwable $e){
+            return redirect()->back()->withError($e->getMessage());
+        } catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back()->withError($e->getMessage());
+        }
+    }
 }

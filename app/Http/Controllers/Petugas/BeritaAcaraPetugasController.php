@@ -98,11 +98,11 @@ class BeritaAcaraPetugasController extends Controller
                     'nama_petugas' => $request->name,
                     'jabatan' => $request->jabatan,
                     'cara_pemusnahan' => $request->cara_pemusnahan,
-                    'tanggal_pemusnahan' => $formatTanggal,
+                    'tanggal_pemusnahan' => $now_format,
                     'waktu_pemusnahan' => $request->waktu_pemusnahan,
                     'lokasi_pemusnahan' => $request->lokasi_pemusnahan,
                     'ketua_rm' => $request->ketua_rekam_medis,
-                    'lampiran' => 'Berita Acara Pemusnahan ' . $formatTanggal . '.pdf'
+                    'lampiran' => 'Berita Acara Pemusnahan ' . $now_format . '.pdf'
                 ])->setPaper('legal');
                 $path = time() . '.pdf';
                 file_put_contents(public_path('/berita_acara/' . $path), $dom_pdf->output());
@@ -112,7 +112,7 @@ class BeritaAcaraPetugasController extends Controller
                 foreach ($files as $key => $value) {
                     $pdf_merge->addPDF($value->getPathName(), 'all');
                 }
-                $filename = 'Berita Acara Pemusnahan ' . $formatTanggal . '.pdf';
+                $filename = 'Berita Acara Pemusnahan ' . $now_format . '.pdf';
                 $pdf_merge->merge();
                 $pdf_merge->save(public_path('/berita_acara/' . $filename));
 
@@ -216,11 +216,11 @@ class BeritaAcaraPetugasController extends Controller
                     'nama_petugas' => $request->name,
                     'jabatan' => $request->jabatan,
                     'cara_pemusnahan' => $request->cara_pemusnahan,
-                    'tanggal_pemusnahan' => $formatTanggal,
+                    'tanggal_pemusnahan' => $now_format,
                     'waktu_pemusnahan' => $request->waktu_pemusnahan,
                     'lokasi_pemusnahan' => $request->lokasi_pemusnahan,
                     'ketua_rm' => $request->ketua_rm,
-                    'lampiran' => 'Berita Acara Pemusnahan ' . $formatTanggal . '.pdf'
+                    'lampiran' => 'Berita Acara Pemusnahan ' . $now_format . '.pdf'
                 ])->setPaper('legal');
                 $path = time() . '.pdf';
                 file_put_contents(public_path('/berita_acara/' . $path), $dom_pdf->output());
@@ -243,7 +243,7 @@ class BeritaAcaraPetugasController extends Controller
                     $pdf_merge->addPDF($newPDF, 'all'); // Tambahkan file PDF baru
                 }
 
-                $filename = 'Berita Acara Pemusnahan'  . $formatTanggal . '.pdf';
+                $filename = 'Berita Acara Pemusnahan'  . $now_format . '.pdf';
                 $pdf_merge->merge();
                 $pdf_merge->save(public_path('/berita_acara/' . $filename));
 
@@ -343,11 +343,11 @@ class BeritaAcaraPetugasController extends Controller
                 'nama_petugas' => $beritaAcara->name,
                 'jabatan' => $beritaAcara->jabatan,
                 'cara_pemusnahan' => $beritaAcara->cara_pemusnahan,
-                'tanggal_pemusnahan' => $formatTanggal,
+                'tanggal_pemusnahan' => $now_format,
                 'waktu_pemusnahan' => $beritaAcara->waktu_pemusnahan,
                 'lokasi_pemusnahan' => $beritaAcara->lokasi_pemusnahan,
                 'ketua_rm' => $beritaAcara->ketua_rm,
-                'lampiran' => 'Berita Acara Pemusnahan ' . $formatTanggal . '.pdf'
+                'lampiran' => 'Berita Acara Pemusnahan ' . $now_format . '.pdf'
             ])->setPaper('legal');
             $path = time() . '.pdf';
             file_put_contents(public_path('/berita_acara/' . $path), $dom_pdf->output());
@@ -361,7 +361,7 @@ class BeritaAcaraPetugasController extends Controller
                 $pdf_merge->addPDF($file->path_file, 'all'); // Tambahkan file PDF lama
             }
 
-            $filename = 'Berita Acara Pemusnahan'  . $formatTanggal . '.pdf';
+            $filename = 'Berita Acara Pemusnahan'  . $now_format . '.pdf';
             $pdf_merge->merge();
             $pdf_merge->save(public_path('/berita_acara/' . $filename));
             $beritaAcara->lampiran = $filename;

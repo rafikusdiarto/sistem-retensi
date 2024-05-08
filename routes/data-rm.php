@@ -14,4 +14,6 @@ Route::get('/deletedatarekammedis/{id}', [DataRekamMedisController::class, 'dele
 Route::get('/datarekammedis/searchdatarekammedis', [DataRekamMedisController::class, 'search'])->name('searchDataRekamMedis');
 Route::post('/uploadfile', [DataRekamMedisController::class, 'importFile'])->name('importFile');
 Route::post('/uploadfile', [DataRekamMedisController::class, 'importFile'])->name('importFile');
+Route::get('/dataretensi/hangus', [DataRekamMedisController::class, 'dataHangus'])->name('dataRetensiHangus');
+Route::get('/dataretensi/searchdataretensi/hangus', [DataRekamMedisController::class, 'searchDataHangus'])->name('searchDataRetensiHangus');
 
