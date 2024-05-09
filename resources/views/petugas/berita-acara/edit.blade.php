@@ -25,60 +25,136 @@
                 <form action="{{ route('updateBeritaAcara', $data->id) }}" method="post" enctype="multipart/form-data" class="p-[30px]">
                     @csrf
                     @method('PUT')
-                    <div class="mb-4">
-                        <label for="name" class="block mb-2 text-sm font-medium text-slate text-slate">Nama</label>
-                        <input type="text" name="name" id="name" value="{{ $data->user->name }}" readonly
-                            class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                            @error('name')
-                            <span class="pl-1 text-xs text-red-600 text-bold">
-                                {{$message}}
-                            </span>
-                            @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="jabatan" class="block mb-2 text-sm font-medium text-slate text-slate">Jabatan</label>
-                        <input type="text" name="jabatan" id="jabatan" value="{{ $data->user->getRoleNames()[0] }}" readonly
-                            class="focus:shadow-primary-outline uppercase text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                    </div>
-                    <div class="mb-4">
-                        <label for="caraPemusnahan" class="block mb-2 text-sm font-medium text-slate text-slate">Cara Pemusnahan</label>
-                        <input type="text" name="cara_pemusnahan" id="caraPemusnahan" value="{{ $data->cara_pemusnahan }}"
-                            class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                            @error('cara_pemusnahan')
-                                <small class="text-rose-600">{{ $message }}</small>
-                            @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="tanggalPemusnahan" class="block mb-2 text-sm font-medium text-slate text-slate">Tanggal Pemusnahan</label>
-                        <input type="date" name="tanggal_pemusnahan" id="tanggalPemusnahan" value="{{ $data->tanggal_pemusnahan }}"
-                            class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                            @error('tanggal_pemusnahan')
-                                <small class="text-rose-600">{{ $message }}</small>
-                            @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="waktuPemusnahan" class="block mb-2 text-sm font-medium text-slate text-slate">Waktu Pemusnahan</label>
-                        <input type="time" name="waktu_pemusnahan" id="waktuPemusnahan" value="{{ $data->waktu_pemusnahan }}"
-                            class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                            @error('waktu_pemusnahan')
-                                <small class="text-rose-600">{{ $message }}</small>
-                            @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="lokasiPemusnahan" class="block mb-2 text-sm font-medium text-slate text-slate">Lokasi Pemusnahan</label>
-                        <input type="text" name="lokasi_pemusnahan" id="lokasiPemusnahan" value="{{ $data->lokasi_pemusnahan }}"
-                            class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                            @error('lokasi_pemusnahan')
-                                <small class="text-rose-600">{{ $message }}</small>
-                            @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="ketuaRekamMedis" class="block mb-2 text-sm font-medium text-slate text-slate">Ketua Rekam Medis</label>
-                        <input type="text" name="ketua_rm" id="ketuaRekamMedis" value="{{ $data->ketua_rm }}"
-                            class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
-                            @error('ketua_rekam_medis')
-                                <small class="text-rose-600">{{ $message }}</small>
-                            @enderror
+                    <div class="flex grid grid-cols-2 gap-4">
+                        <div>
+                            {{-- <input type="hidden" name="lampiran[]" value="{{$data->lampiran}}"> --}}
+                            <div class="mb-4">
+                                <label for="name" class="block mb-2 text-sm font-medium text-slate text-slate">Nama Petugas</label>
+                                <input type="text" name="name" id="name" value="{{$data->name}}"
+                                    class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                @error('name')
+                                    <span class="pl-1 text-xs text-red-600 text-bold">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label for="name" class="block mb-2 text-sm font-medium text-slate text-slate">NIP Petugas</label>
+                                <input type="text" name="nip_petugas" id="nip_petugas" value="{{$data->nip_petugas}}"
+                                    class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                @error('nip_petugas')
+                                    <span class="pl-1 text-xs text-red-600 text-bold">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label for="jabatan" class="block mb-2 text-sm font-medium text-slate text-slate">Jabatan</label>
+                                <input type="text" name="jabatan" id="jabatan" value="{{ Auth::user()->getRoleNames()[0] }}" readonly
+                                    class="focus:shadow-primary-outline uppercase text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                            </div>
+                            <div class="mb-4">
+                                <label for="caraPemusnahan" class="block mb-2 text-sm font-medium text-slate text-slate">Cara
+                                    Pemusnahan</label>
+                                <input type="text" name="cara_pemusnahan" id="caraPemusnahan" value="{{$data->cara_pemusnahan}}"
+                                    class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                @error('cara_pemusnahan')
+                                    <small class="text-rose-600">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label for="tanggalPemusnahan" class="block mb-2 text-sm font-medium text-slate text-slate">Tanggal
+                                    Pemusnahan</label>
+                                <input type="date" name="tanggal_pemusnahan" id="tanggalPemusnahan" value="{{$data->tanggal_pemusnahan}}"
+                                    class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                @error('tanggal_pemusnahan')
+                                    <small class="text-rose-600">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label for="waktuPemusnahan" class="block mb-2 text-sm font-medium text-slate text-slate">Waktu
+                                    Pemusnahan</label>
+                                <input type="time" name="waktu_pemusnahan" id="waktuPemusnahan" value="{{$data->waktu_pemusnahan}}"
+                                    class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                @error('waktu_pemusnahan')
+                                    <small class="text-rose-600">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label for="lokasiPemusnahan" class="block mb-2 text-sm font-medium text-slate text-slate">Lokasi
+                                    Pemusnahan</label>
+                                <input type="text" name="lokasi_pemusnahan" id="lokasiPemusnahan" value="{{$data->lokasi_pemusnahan}}"
+                                    class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                @error('lokasi_pemusnahan')
+                                    <small class="text-rose-600">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mb-4">
+                                <label for="ketuaRekamMedis" class="block mb-2 text-sm font-medium text-slate text-slate">Ketua
+                                    Rekam Medis</label>
+                                <input type="text" name="ketua_rekam_medis" id="ketuaRekamMedis" value="{{$data->ketua_rm}}"
+                                    class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                @error('ketua_rekam_medis')
+                                    <small class="text-rose-600">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label for="nip_ketua_rm" class="block mb-2 text-sm font-medium text-slate text-slate">NIP Ketua
+                                    Rekam Medis</label>
+                                <input type="text" name="nip_ketua_rm" id="nip_ketua_rm" value="{{$data->nip_ketua_rm}}"
+                                    class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                @error('nip_ketua_rm')
+                                    <small class="text-rose-600">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label for="nama_direktur" class="block mb-2 text-sm font-medium text-slate text-slate">Direktur</label>
+                                <input type="text" name="direktur" id="direktur" value="{{$data->direktur}}"
+                                    class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                @error('direktur')
+                                    <span class="pl-1 text-xs text-red-600 text-bold">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label for="nip_direktur" class="block mb-2 text-sm font-medium text-slate text-slate">NIP Direktur</label>
+                                <input type="text" name="nip_direktur" id="nip_direktur" value="{{$data->nip_direktur}}"
+                                    class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                @error('nip_direktur')
+                                    <span class="pl-1 text-xs text-red-600 text-bold">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label for="no_surat" class="block mb-2 text-sm font-medium text-slate text-slate">Nomor Surat</label>
+                                <input type="text" name="no_surat" id="caraPemusnahan" value="{{$data->no_surat}}"
+                                    class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                @error('no_surat')
+                                    <small class="text-rose-600">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label for="rentang_tahun" class="block mb-2 text-sm font-medium text-slate text-slate">Rentang Tahun</label>
+                                <input type="text" name="rentang_tahun" id="caraPemusnahan" value="{{$data->rentang_tahun}}"
+                                    class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                @error('rentang_tahun')
+                                    <small class="text-rose-600">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label for="jumlah_rm" class="block mb-2 text-sm font-medium text-slate text-slate">Jumlah Dokumen RM</label>
+                                <input type="text" name="jumlah_rm" id="caraPemusnahan" value="{{$data->jumlah_rm}}"
+                                    class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                @error('jumlah_rm')
+                                    <small class="text-rose-600">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </div>
+
                     </div>
                     <div class="mb-4">
                         <label for="Upload Lampiran" class="block mb-2 text-sm font-medium text-slate text-slate">

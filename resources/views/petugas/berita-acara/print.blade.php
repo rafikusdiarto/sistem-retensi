@@ -53,7 +53,7 @@
     <div>
         <center style="margin-left: 2cm; margin-right: 2cm;">
             <h3 style="text-decoration:underline">BERITA ACARA PEMUSNAHAN BERKAS REKAM MEDIS</h3>
-            <p style="margin-top: -15px">Nomor:..............................</p>
+            <p style="margin-top: -15px">Nomor: {{$no_surat}}</p>
         </center>
     </div>
     <div style="text-align: justify">
@@ -66,7 +66,7 @@
 
         </div>
 
-        <p style="margin-left: 40px">Atas dasar tersebut, Tim Pemusnahan Berkas Rekam Medis Rumah Sakit Tingkat III Baladhika Husada jember telah melakukan pemusnahan berkas rekam medis inaktif tahun……sampai……sebanyak……berkas. - ...... </p>
+        <p style="margin-left: 40px">Atas dasar tersebut, Tim Pemusnahan Berkas Rekam Medis Rumah Sakit Tingkat III Baladhika Husada jember telah melakukan pemusnahan berkas rekam medis inaktif rentang {{$rentang_tahun}} tahun sebanyak {{$jumlah_rm}} berkas. - ...... </p>
         <div style="display: flex">
             <p style="margin-left: 40px">I. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PELAKSANAAN</p>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nama Petugas<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $nama_petugas }}</span></p>
@@ -92,11 +92,12 @@
                 <p style="float: left; height: 1cm ;margin-top:-4px;margin-left:-12px">5.</p>
                 <p style="margin-left: 1cm;margin-top:-4px">Lakukan pemusnahan berkas rekam medis dan petugas rekam medis harus memastikan hancurnya berkas rekam medis sehingga tidak dapat dikenali isi maupun bentuknya.</p>
                 <p style="float: left; height: 1cm ;margin-top:-4px">6.</p>
-                <p style="margin-left: 1cm;margin-top:-4px">Setiap proses pemusnahan harus dilakukan dokumentasi dan dibuatkan berita acara pemusnahan berkas rekam medis. </p>
-                <p style="float: left; height: 1cm ;margin-top:-4px">7.</p>
+                <p style="margin-left: 1cm;margin-top:-4px">Setiap proses pemusnahan harus dilakukan dokumentasi dan dibuatkan berita acara pemusnahan berkas rekam medis.</p>
+                <p style="float: left; height: 1cm ;margin-top:-4px;margin-left: -13px">7.</p>
                 <p style="margin-left: 1cm;margin-top:-4px">Terakhir, dokumen pemusnahan berkas rekam medis disimpan selamanya di unit rekam medis.</p>
-                <p style="float: left; height: 1cm ;margin-top:-4px;margin-left:-12px">8.</p>
+                <p style="float: left; height: 1cm ;margin-top:-4px;">8.</p>
                 <p style="margin-left: 1cm;margin-top:-4px">Daftar rekam medis yang  dimusnahkan terlampir.</p>
+
             </div>
 
         </div>
@@ -104,22 +105,26 @@
     <div style="float: left; margin-top:147px; width: 7cm;margin-left:-20px;text-align: center">
         <p>Ketua Tim Pemusnahan</p>
 
-        <p style="margin-top: 3cm;margin-left:-20px;text-transform:uppercase">{{Auth::user()->name}}</p>
+        <p style="margin-top: 3cm;">{{$nama_petugas}}</p>
+        <p style="margin-top: 3cm;margin-top: -13px;">{{$nip_petugas}}</p>
     </div>
-    <div style="float: right; margin-top: 3cm; width: 7cm;text-align: center">
+    <div style="float: right; margin-top: 3cm; width: 9cm;text-align: center">
         <p style="margin-left: 30px">Jember, {{ Carbon\Carbon::now()->locale('id')->translatedFormat('d F Y') }}</p>
         <p style="margin-left:-20px">Kepala Rekam Medis</p>
 
         <div style="">
             <p style="margin-top: 2.5cm;">{{$ketua_rm}}</p>
+            <p style="margin-top: -13px;">{{$nip_ketua_rm}}</p>
 
         </div>
     </div>
-    <div style="margin-top: 4cm; width: 7cm;margin-left:300px">
+    <div style="margin-top: 400px; width: 7cm;margin-left:300px;">
         <p style="">Mengetahui,</p>
-        <p style="margin-left:-80px">Direktur RS TK III Bladhika Husada</p>
+        <p style="margin-left:-80px;margin-top: -13px;">Direktur RS TK III Bladhika Husada</p>
 
-        <p style="margin-top: 2.5cm;margin-left:-26px">(.................................)</p>
+        <p style="margin-top: 2.5cm;margin-left:-40px">{{$direktur}}</p>
+        <p style="margin-top: 2.5cm;margin-left:-37px;margin-top: -13px;">{{$nip_direktur}}</p>
+
     </div>
 </body>
 </html>

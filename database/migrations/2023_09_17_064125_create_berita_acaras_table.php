@@ -17,7 +17,15 @@ return new class extends Migration {
             $table->date('tanggal_pemusnahan');
             $table->string('waktu_pemusnahan');
             $table->string('lokasi_pemusnahan');
+            $table->string('name');
+            $table->string('nip_petugas');
             $table->string('ketua_rm');
+            $table->string('nip_ketua_rm');
+            $table->string('direktur');
+            $table->string('nip_direktur');
+            $table->string('no_surat');
+            $table->string('jumlah_rm');
+            $table->string('rentang_tahun');
             $table->timestamps();
 
             $table->foreign('user_id')
