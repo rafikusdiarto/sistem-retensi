@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Kepala;
+namespace App\Http\Controllers\Petugas;
 
 use PDF;
 use Carbon\Carbon;
@@ -12,18 +12,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
 
-class BeritaAcaraKepalaController extends Controller
+class BeritaAcaraPetugasController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:kepala']);
+        $this->middleware(['role:petugas']);
     }
 
     public function index()
     {
         try {
             $data = BeritaAcara::all();
-            return view('kepala.berita-acara.index', [
+            return view('petugas.berita-acara.index', [
                 'data' => $data
             ]);
         } catch (\Throwable $e) {
@@ -37,7 +37,7 @@ class BeritaAcaraKepalaController extends Controller
     {
         try {
             $user = \Auth::user();
-            return view('kepala.berita-acara.create', [
+            return view('petugas.berita-acara.create', [
                 'user' => $user
             ]);
         } catch (\Throwable $e) {
@@ -162,7 +162,7 @@ class BeritaAcaraKepalaController extends Controller
 
             }
 
-            return redirect('/kepala/berita-acara')->with('success', 'Data berhasil ditambahkan');
+            return redirect()->route('beritaAcara')->with('success', 'Data berhasil ditambahkan');
         } catch (\Throwable $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -177,7 +177,7 @@ class BeritaAcaraKepalaController extends Controller
             // $thisFile = $data->lampirans;
             $thisFile = $data->lampirans;
             $newFiles = request()->file('lampiran');
-            return view('kepala.berita-acara.edit', [
+            return view('petugas.berita-acara.edit', [
                 'data' => $data,
                 'thisFile' => $thisFile,
                 'newFiles' => $newFiles
@@ -316,7 +316,7 @@ class BeritaAcaraKepalaController extends Controller
                 }
 
             }
-            return redirect('/kepala/berita-acara')->with('success', 'Data berhasil diubah');
+            return redirect()->route('beritaAcara')->with('success', 'Data berhasil diubah');
         } catch (\Throwable $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -328,7 +328,7 @@ class BeritaAcaraKepalaController extends Controller
     {
         try {
             BeritaAcara::find($id)->delete();
-            return redirect('/kepala/berita-acara')->with('success', 'Data berhasil dihapus');
+            return redirect()->route('beritaAcara')->with('success', 'Data berhasil dihapus');
         } catch (\Throwable $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
