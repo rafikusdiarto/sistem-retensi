@@ -134,7 +134,7 @@
                                             KRS</th>
                                         <th
                                             class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                            Jenis Pelayanan</th>
+                                            Tanggal Upload</th>
                                         <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap">
                                             Status</th>
@@ -178,8 +178,8 @@
                                                 {{ $item->krs }}
                                             </td>
                                             <td class="text-left px-6 py-3 text-xs font-semibold text-slate text-slate-400">
-                                                {{ $item->jenis_pelayanan }}
-                                            </td>
+                                                {{ \Carbon\Carbon::parse($item->created_at)->format('Y-m-d') }}
+                                                </td>
                                             <td
                                                 class="text-left px-6 py-3 uppercase text-xs font-semibold text-slate text-slate-400">
                                                 <select id="" data-user-id="{{ $item->id }}" name="status"
@@ -279,49 +279,5 @@
             });
         });
 
-        // $(document).ready(function() {
-        //     $('.statusSelect').change(function() {
-        //         var selectElement = $(this);
-        //         var status = selectElement.val();
-        //         var userId = selectElement.data('user-id');
-
-        //         // Menampilkan SweetAlert konfirmasi
-        //         Swal.fire({
-        //             title: 'Konfirmasi',
-        //             text: 'Anda yakin ingin mengubah status pengguna?',
-        //             type: 'warning',
-        //             // icon: 'warning',
-        //             // showCancelButton: true,
-        //             showCancelButton: true,
-        //             confirmButtonText: 'Ya',
-        //             cancelButtonText: 'Batal',
-        //         }).then((result) => {
-        //             if (result.isConfirmed) {
-        //                 $.ajax({
-        //                     url: "/dataretensi/update-status/" + userId + "/" + status,
-        //                     type: 'PUT',
-        //                     data: {
-        //                         _token: '{{ csrf_token() }}',
-        //                         status: status
-        //                     },
-        //                     success: function(data) {
-        //                         console.log('Status berhasil diubah');
-        //                         // Tambahkan logika atau tindakan setelah status berhasil diubah
-        //                     },
-        //                     error: function(xhr) {
-        //                         console.error('Terjadi kesalahan: ' + xhr.responseText);
-        //                     }
-        //                 });
-        //             } else {
-        //                 // Kembalikan select box ke status sebelumnya jika pembatalan
-        //                 var previousStatus = selectElement.data('status');
-        //                 selectElement.val(previousStatus);
-        //             }
-        //         });
-
-        //         // Menyimpan status sebelumnya sebelum perubahan dilakukan
-        //         selectElement.data('status', status);
-        //     });
-        // });
     </script>
 @endsection

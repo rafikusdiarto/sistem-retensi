@@ -37,12 +37,9 @@ class DataRekamMedisController extends Controller
                 $data_pasien = Pasien::where('status', 'active')->get();
 
                 foreach ($data_pasien as $item) {
-
                     $tgl_krs = Carbon::parse($item->krs);
-                    // dd($tgl_krs);
                     $tgl_retensi = Carbon::parse($item->tgl_retensi);
                     $tanggalKadaluwarsa = Carbon::now()->subYears(5)->subDays(5);
-                    // dd($tanggalKadaluwarsa);
 
                     if ($tgl_retensi <= Carbon::now()->addDays(5) || $tgl_retensi <= Carbon::now() || $tgl_krs <= $tanggalKadaluwarsa) {
                         $item->class = 'bg-[#FFC7B6]';
@@ -64,7 +61,7 @@ class DataRekamMedisController extends Controller
                     </a>';
                 })
                 ->addColumn('checkbox', function($data_pasien){
-                return  '<input type="checkbox" name="checked[]" class="<input id="default-checkbox" type="checkbox" value="'. $data_pasien->id .'" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 border-rounded-full rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/> ';
+                return  '<input name="checked[]" id="default-checkbox" type="checkbox" value="'. $data_pasien->id .'" class="row-select w-5 h-5 text-blue-600 bg-gray-200 border-gray-300 border-rounded-full rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/> ';
                 })
                 ->rawColumns(['edit', 'delete', 'checkbox'])
                 ->addIndexColumn()
@@ -199,74 +196,20 @@ class DataRekamMedisController extends Controller
         }
     }
 
-    // public function importFile(Request $request){
-    //     $this->validate($request, [
-	// 		'file' => 'required|mimes:csv,xls,xlsx'
-	// 	]);
-
-    //     try {
-    //         $file = $request->file('file');
-    //         $nama_file = $file->getClientOriginalName();
-    //         $path_file = 'data_excel/' . $nama_file;
-    //         $file->move('data_excel',$nama_file);
-
-    //         FileUpload::create([
-    //             'path_file' => $path_file,
-    //             'nama_file' => $nama_file,
-    //             'tgl_upload' => $request->tgl_upload,
-    //         ]);
-
-    //         $data_pasien = Excel::toArray(new PasienImport, public_path('/data_excel/'.$nama_file));
-    //         $data_pasien = $data_pasien[0];
-    //         $insert_dataPasien = [];
-    //         // (new Carbon($request->krs))->addYears(5)
-    //         foreach ($data_pasien as $row) {
-    //             $x = intval($row['tgl_daftar']);
-    //             $y = intval($row['tgl_pulang']);
-    //             $insert_dataPasien[] = [
-    //                 'no_rm' => $row['no_rm'],
-    //                 'nik' => $row['nik'],
-    //                 'nama' => $row['nama'],
-    //                 'jenis_kelamin' => $row['jenis_kelamin'],
-    //                 'jenis_pelayanan' => $row['jenis_perawatan'],
-    //                 'dokter' => $row['nama_dokter'],
-    //                 'alamat' => $row['kota'],
-    //                 'mrs' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($x),
-    //                 'krs' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($y),
-    //                 'tgl_retensi' => (new Carbon(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($y)))->addYears(5),
-    //                 'status' => 'active',
-    //                 // 'lama_dirawat' => $row['lama_dirawat'],
-    //                 // 'hari_perawatan' => $row['hari_perawatan'],
-    //                 ];
-    //         }
-
-    //         // dd($data_pasien);
-
-    //         if (!empty($insert_dataPasien)) {
-    //             foreach (array_chunk($insert_dataPasien,1000) as $t) {
-
-    //                 DB::table('pasiens')->insert($t);
-
-
-    //              }
-
-    //         }
-    //         // dd($data_pasien);
-    //         return redirect()->route('dataRekamMedis')->with('success', 'data pasien berhasil diimport');
-
-    //     } catch(\Throwable $e){
-    //         return redirect()->back()->withError($e->getMessage());
-    //     } catch(\Illuminate\Database\QueryException $e){
-    //         return redirect()->back()->withError($e->getMessage());
-    //     }
-    // }
-
     public function importFile(Request $request){
         $this->validate($request, [
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
 
         try {
+            $requestUploadDate = Carbon::parse($request->tgl_upload);
+            $requestDate = $requestUploadDate->format('Y-m');
+            $existingUpload = FileUpload::whereYear('tgl_upload', $requestUploadDate->year)
+                                        ->whereMonth('tgl_upload', $requestUploadDate->month)
+                                        ->exists();
+            if ($existingUpload) {
+                return redirect()->back()->with('error', 'Anda tidak dapat mengunggah file dalam bulan yang sama.');
+            }
             $file = $request->file('file');
             $nama_file = $file->getClientOriginalName();
             $path_file = 'data_excel/' . $nama_file;
@@ -307,6 +250,7 @@ class DataRekamMedisController extends Controller
                     'krs' => $tgl_pulang,
                     'tgl_retensi' => (new Carbon($tgl_pulang))->addYears(5)->format('Y-m-d'),
                     'status' => 'active',
+                    'created_at' => Carbon::now()->format('Y-m-d'),
                 ];
             }
 

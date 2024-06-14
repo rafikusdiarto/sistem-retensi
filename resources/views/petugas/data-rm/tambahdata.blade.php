@@ -11,7 +11,7 @@
             @if (session('error'))
                 <div alert
                     class="relative w-full p-4 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-emerald-500 to-teal-400 border-emerald-300">
-                    {{ session('error') }}`</div>
+                    {{ session('error') }}</div>
             @endif
             <div class="relative h-[800px] p-4 flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
                 <div class="p-6 flex justify-between pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
@@ -51,7 +51,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="date" class="block mb-2 text-sm font-medium text-slate text-slate">Keterangan</label>
-                            <input type="date" name="tgl_upload" id="tgl_upload" required   
+                            <input type="date" name="tgl_upload" id="tgl_upload" required
                                 class="focus:shadow-primary-outline text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                             @error('tgl_upload')
                                 <span class="pl-1 text-xs text-red-600 text-bold">

@@ -137,7 +137,7 @@
                                             KRS</th>
                                         <th
                                             class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                            Jenis Pelayanan</th>
+                                            Tanggal Upload</th>
                                         <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap">
                                             Edit</th>
@@ -146,7 +146,9 @@
                                             Hapus</th>
                                         <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                            Pilih</th>
+                                            <input type="checkbox" id="select-all" class="w-5 h-5 text-blue-600 bg-gray-200 border-gray-300 border-rounded-full rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+                                            Pilih
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-xs font-semibold text-slate text-slate-400">
@@ -170,6 +172,8 @@
     </div>
 @endsection
 @section('extraJS')
+
+
 {{--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
@@ -195,7 +199,20 @@
                 { "data": "dokter" },
                 { "data": "mrs" },
                 { "data": "krs" },
-                { "data": "jenis_pelayanan" },
+                {
+                    "data": "created_at",
+                    "render": function (data, type, row) {
+                        // Use moment.js or plain JavaScript to format the date
+                        if (data) {
+                            var date = new Date(data);
+                            var day = ('0' + date.getDate()).slice(-2);
+                            var month = ('0' + (date.getMonth() + 1)).slice(-2);
+                            var year = date.getFullYear();
+                            return year + '-' + month + '-' + day;
+                        }
+                        return data;
+                    }
+                },
                 { "data": "edit", orderable:false, searchable: false},
                 { "data": "delete", orderable:false, searchable: false},
                 { "data":"checkbox", orderable:false, searchable:false}
@@ -211,6 +228,15 @@
             $('#myInput').on( 'keyup', function () {
             table.search( this.value ).draw();
             });
+            $('#select-all').click(function() {
+                $('.bg-\\[\\#FFC7B6\\] input[name="checked[]"]').prop('checked', $(this).prop('checked'));
+                updateSelectedCount();
+            });
+            function updateSelectedCount() {
+                var count = $('.bg-\\[\\#FFC7B6\\] input[name="checked[]"]:checked').length;
+                console.log('Jumlah baris yang dipilih:', count);
+            }
+
     });
     </script>
 <script>
