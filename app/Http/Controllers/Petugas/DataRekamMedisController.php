@@ -238,7 +238,7 @@ class DataRekamMedisController extends Controller
                 $tgl_daftar = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($x)->format('Y-m-d');
                 $tgl_pulang = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($y)->format('Y-m-d');
 
-                $insert_dataPasien[] = [
+                $pasienData = [
                     'no_rm' => $row['no_rm'],
                     'nik' => $row['nik'],
                     'nama' => $row['nama'],
@@ -252,6 +252,14 @@ class DataRekamMedisController extends Controller
                     'status' => 'active',
                     'created_at' => Carbon::now()->format('Y-m-d'),
                 ];
+                $existingPasien = Pasien::where('nik', $row['nik'])
+                                        ->where('status', 'active')
+                                        ->first();
+                if ($existingPasien) {
+                    $existingPasien->update($pasienData);
+                } else {
+                    $insert_dataPasien[] = $pasienData;
+                }
             }
 
             if (!empty($insert_dataPasien)) {
