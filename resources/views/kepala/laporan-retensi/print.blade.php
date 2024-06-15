@@ -56,7 +56,7 @@
                     <th style="padding: 2px;border: 1px solid black;border-collapse: collapse">Jenis Kelamin</th>
                     <th style="padding: 2px;border: 1px solid black;border-collapse: collapse">MRS</th>
                     <th style="padding: 2px;border: 1px solid black;border-collapse: collapse">KRS</th>
-                    <th style="padding: 2px;border: 1px solid black;border-collapse: collapse">Pelayanan</th>
+                    <th style="padding: 2px;border: 1px solid black;border-collapse: collapse">Tanggal Upload</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,7 +69,7 @@
                     <td style="padding: 2px;border: 1px solid black;border-collapse: collapse">{{$item->jenis_kelamin}}</td>
                     <td style="padding: 2px;border: 1px solid black;border-collapse: collapse">{{$item->mrs}}</td>
                     <td style="padding: 2px;border: 1px solid black;border-collapse: collapse">{{$item->krs}}</td>
-                    <td style="padding: 2px;border: 1px solid black;border-collapse: collapse">{{$item->jenis_pelayanan}}</td>
+                    <td style="padding: 2px;border: 1px solid black;border-collapse: collapse">{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d')}}</td>
                 </tr>
                 @endforeach
                 <tr>

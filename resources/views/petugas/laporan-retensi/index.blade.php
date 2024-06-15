@@ -38,14 +38,14 @@
                     <div class="p-5 overflow-x-auto">
                         <div class="flex items-center mb-5 space-x-10 w-full">
                             <div class="flex items-center justify-end w-full gap-10">
-                                <div class="flex items-center gap-2">
+                                {{-- <div class="flex items-center gap-2">
                                     <label for="jenis_pelayanan" class="block text-sm font-medium text-slate text-slate">Pelayanan</label>
                                     <select id="jenis_pelayanan" name="jenis_pelayanan"
                                     class="bg-gray-50 border border-gray-300 text-slate pr-10 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                         <option value="RJ">Rawat Jalan</option>
                                         <option value="RI">Rawat Inap</option>
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="flex items-center gap-2">
                                     <label for="tahun" class="block text-sm font-medium text-slate text-slate">Tahun</label>
                                     <input type="text" name="tahun" id="tahun" placeholder="yyyy"
@@ -94,7 +94,7 @@
                                         KRS</th>
                                     <th
                                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap ">
-                                        Jenis Pelayanan</th>
+                                        Tanggal Upload</th>
                                     <th
                                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none  text-xxs border-b-solid tracking-none whitespace-nowrap">
                                         Status</th>
@@ -132,7 +132,17 @@
                 {data: 'jenis_kelamin'},
                 {data: 'mrs'},
                 {data: 'krs'},
-                {data: 'jenis_pelayanan'},
+                {data: 'created_at',
+                    "render": function (data, type, row) {
+                        if (data) {
+                            var date = new Date(data);
+                            var day = ('0' + date.getDate()).slice(-2);
+                            var month = ('0' + (date.getMonth() + 1)).slice(-2);
+                            var year = date.getFullYear();
+                            return year + '-' + month + '-' + day;
+                        }
+                        return data;
+                }},
                 {data: 'status',
                 render: function(data, type, row) {
                 // Mengubah nilai menjadi huruf kapital
@@ -150,15 +160,15 @@
         })
         $(document).ready(function() {
             $('#searchButton').click(function() {
-                const jenis_pelayanan = $('#jenis_pelayanan').val();
+                // const jenis_pelayanan = $('#jenis_pelayanan').val();
                 const tahun = $('#tahun').val();
                 const status = $('#status').val();
-                console.log(jenis_pelayanan, tahun, status);
+                console.log(tahun, status);
                 $.ajax({
                     type: 'GET',
                     url: '/laporan-retensi',
                     data: {
-                        jenis_pelayanan: jenis_pelayanan,
+                        // jenis_pelayanan: jenis_pelayanan,
                         tahun: tahun,
                         status: status
                     },

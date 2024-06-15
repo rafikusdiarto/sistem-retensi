@@ -118,20 +118,6 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="mb-4">
-                                    <label for="jenis_pelayanan"
-                                        class="block mb-2 text-sm font-medium text-slate text-slate">Jenis Pelayanan</label>
-                                    <select id="jenis_pelayanan" name="jenis_pelayanan"
-                                        class="bg-gray-50 border border-gray-300 text-slate text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                        <option value="RJ">Rawat Jalan</option>
-                                        <option value="RI">Rawat Inap</option>
-                                    </select>
-                                    @error('jenis_pelayanan')
-                                        <span class="pl-1 text-xs text-red-600 text-bold">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
                             </div>
                             <div class="">
                                 <div class="mb-4">

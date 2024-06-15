@@ -34,6 +34,7 @@ class DataRekamMedisController extends Controller
     public function getDataRM(Request $request){
         try {
             if ($request->ajax()) {
+                // $data_pasien = Pasien::where('status', 'active')->orderBy('no_rm', 'asc')->get();
                 $data_pasien = Pasien::where('status', 'active')->get();
 
                 foreach ($data_pasien as $item) {
@@ -95,7 +96,7 @@ class DataRekamMedisController extends Controller
             'no_rm' => 'required',
             'nik' => 'required|max:16',
             'jenis_kelamin' => 'required',
-            'jenis_pelayanan' => 'required',
+            // 'jenis_pelayanan' => 'required',
             'dokter' => 'required',
             'mrs' => 'required',
             'krs' => 'required',
@@ -108,12 +109,12 @@ class DataRekamMedisController extends Controller
         ]
         );
         try {
-        $pasien = Pasien::insert([
+        $pasien = Pasien::create([
             'no_rm' => $request->no_rm,
             'nik' => $request->nik,
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'jenis_pelayanan' => $request->jenis_pelayanan,
+            // 'jenis_pelayanan' => $request->jenis_pelayanan,
             'dokter' => $request->dokter,
             'mrs' => $request->mrs,
             'krs' => $request->krs,
@@ -147,7 +148,7 @@ class DataRekamMedisController extends Controller
             'no_rm' => 'required',
             'nik' => 'required|max:16|min:16',
             'jenis_kelamin' => 'required',
-            'jenis_pelayanan' => 'required',
+            // 'jenis_pelayanan' => 'required',
             'dokter' => 'required',
             'mrs' => 'required',
             'krs' => 'required',
@@ -168,7 +169,7 @@ class DataRekamMedisController extends Controller
                 'nik' => $request->nik,
                 'nama' => $request->nama,
                 'jenis_kelamin' => $request->jenis_kelamin,
-                'jenis_pelayanan' => $request->jenis_pelayanan,
+                // 'jenis_pelayanan' => $request->jenis_pelayanan,
                 'dokter' => $request->dokter,
                 'mrs' => $request->mrs,
                 'krs' => $request->krs,
@@ -243,7 +244,7 @@ class DataRekamMedisController extends Controller
                     'nik' => $row['nik'],
                     'nama' => $row['nama'],
                     'jenis_kelamin' => $row['jenis_kelamin'],
-                    'jenis_pelayanan' => $row['jenis_perawatan'],
+                    // 'jenis_pelayanan' => $row['jenis_perawatan'],
                     'dokter' => $row['nama_dokter'],
                     'alamat' => $row['kota'],
                     'mrs' => $tgl_daftar,

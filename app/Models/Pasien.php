@@ -14,7 +14,7 @@ class Pasien extends Model
         'nik',
         'nama',
         'jenis_kelamin',
-        'jenis_pelayanan',
+        // 'jenis_pelayanan',
         'dokter',
         'alamat',
         'status',

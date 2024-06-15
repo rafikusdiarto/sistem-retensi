@@ -62,7 +62,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="mb-4">
+                                {{-- <div class="mb-4">
                                     <label for="jenis_pelayanan"
                                         class="block mb-2 text-sm font-medium text-slate text-slate">Jenis Pelayanan</label>
                                     <select id="jenis_pelayanan" name="jenis_pelayanan"
@@ -75,7 +75,7 @@
                                             {{ $message }}
                                         </span>
                                     @enderror
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="">
                                 <div class="mb-4">
